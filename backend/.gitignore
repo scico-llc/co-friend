@@ -1,0 +1,4 @@
+.env
+api/generate_image/models/
+*.safetensors
+*.pyc

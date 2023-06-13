@@ -102,6 +102,8 @@
 		1CD4CCC12A35B68100803BA2 /* Cofriend */ = {
 			isa = PBXGroup;
 			children = (
+				D75275C72A388C9000D0FDCF /* Feature */,
+				D75275C62A388C8300D0FDCF /* APIClient */,
 				1CD4CCC22A35B68100803BA2 /* CofriendApp.swift */,
 				1CD4CCC42A35B68100803BA2 /* ContentView.swift */,
 				1CD4CCC62A35B68200803BA2 /* Assets.xcassets */,
@@ -137,6 +139,36 @@
 				1CD4CCE32A35B84900803BA2 /* Info.plist */,
 			);
 			path = CofriendWidget;
+			sourceTree = "<group>";
+		};
+		D75275C62A388C8300D0FDCF /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		D75275C72A388C9000D0FDCF /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				D75275C92A388D1700D0FDCF /* MakeFriend */,
+				D75275C82A388D0900D0FDCF /* Chat */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		D75275C82A388D0900D0FDCF /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		D75275C92A388D1700D0FDCF /* MakeFriend */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MakeFriend;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

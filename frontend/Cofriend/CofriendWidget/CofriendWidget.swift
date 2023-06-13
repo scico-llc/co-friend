@@ -10,11 +10,11 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+        SimpleEntry(date: Date(), text: "", imageName: "leaf")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
+        let entry = SimpleEntry(date: Date(), text: "", imageName: "leaf")
         completion(entry)
     }
 
@@ -25,7 +25,7 @@ struct Provider: TimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate)
+            let entry = SimpleEntry(date: entryDate, text: "hourOffset: \(hourOffset)", imageName: "leaf")
             entries.append(entry)
         }
 
@@ -36,13 +36,20 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let text: String
+    let imageName: String
 }
 
 struct CofriendWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
+        HStack {
+            Image(entry.imageName)
+                .frame(maxWidth: 100, maxHeight: 100)
+            Text(entry.date, style: .time)
+            Text("text: \(entry.text)")
+        }
     }
 }
 
@@ -60,7 +67,7 @@ struct CofriendWidget: Widget {
 
 struct CofriendWidget_Previews: PreviewProvider {
     static var previews: some View {
-        CofriendWidgetEntryView(entry: SimpleEntry(date: Date()))
+        CofriendWidgetEntryView(entry: SimpleEntry(date: Date(), text: "test", imageName: "leaf"))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

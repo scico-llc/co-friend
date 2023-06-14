@@ -1,4 +1,4 @@
 .env
-api/generate_image/models/
+/models/*/
 *.safetensors
 *.pyc

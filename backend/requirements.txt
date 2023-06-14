@@ -10,4 +10,4 @@ pydantic
 typing
 openai
 base58
-git+https://github.com/huggingface/diffusers.git@main
+diffusers

@@ -2,5 +2,13 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
-    "python.formatting.provider": "none"
+    "python.formatting.provider": "none",
+    "solidity.packageDefaultDependenciesContractsDirectory": "src",
+    "solidity.packageDefaultDependenciesDirectory": "lib",
+    "solidity.compileUsingRemoteVersion": "v0.8.13",
+    "editor.formatOnSave": true,
+    "[solidity]": {
+      "editor.defaultFormatter": "JuanBlanco.solidity" 
+    },
+    "solidity.formatter": "forge",
 }

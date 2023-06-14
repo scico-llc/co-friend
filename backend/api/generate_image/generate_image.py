@@ -14,9 +14,9 @@ import model_util
 
 def generate_image(animal_name: str, seed: int) -> List[PILImage]:
     # Modelの確認・変換と取得
-    safetensors_path = "./models/anything-v5.safetensors"
+    safetensors_path = "../../models/anything-v5.safetensors"
     safetensors_url = "https://huggingface.co/ckpt/anything-v5.0/resolve/main/AnythingV5V3_v5PrtRE.safetensors"
-    model_path = "./models/anything-v5"
+    model_path = "../../models/anything-v5"
     ref_name = "stablediffusionapi/anything-v5"
     if not os.path.isfile(safetensors_path):
         print("download Model")
@@ -28,7 +28,7 @@ def generate_image(animal_name: str, seed: int) -> List[PILImage]:
         convert(safetensors_path, model_path, ref_name)
 
     # Loraの確認と取得
-    lora_path = "./models/CuteCreatures.safetensors"
+    lora_path = "../../models/CuteCreatures.safetensors"
     lora_url = "https://civitai.com/api/download/models/64757"
     if not os.path.isfile(lora_path):
         print("download Lora")

@@ -1,5 +1,7 @@
+import sys
+sys.path.append('../')
+from generate_image import generate_image
 from fastapi import APIRouter
-from ..generate_image import generate_image
 import schemas.character as sch
 import base58
 
@@ -24,14 +26,14 @@ async def mint_character(
     # TODO: Mintコントラクトを実行する
     return sch.CharacterMintResponse()
 
-@router.get("/characters")
-async def get_characters(
-    reqBody: sch.CharacterHolders,
-) -> sch.CharactersResponse:
-    # TODO: NFTメタデータを取得
-    return sch.CharactersResponse()
+# @router.get("/characters")
+# async def get_characters(
+#     reqBody: sch.CharacterHolders,
+# ) -> sch.CharactersResponse:
+#     # TODO: NFTメタデータを取得
+#     return sch.CharactersResponse()
 
-@router.get("/characters/memory")
-async def get_character_memories() -> sch.CharacterMemoriesResponse:
-    # TODO: SBTのメタデータを取得
-    return sch.CharacterMemoriesResponse()
+# @router.get("/characters/memory")
+# async def get_character_memories() -> sch.CharacterMemoriesResponse:
+#     # TODO: SBTのメタデータを取得
+#     return sch.CharacterMemoriesResponse()

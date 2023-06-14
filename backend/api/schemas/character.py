@@ -24,8 +24,8 @@ class CharacterMetaData():
     memory_id: str = Field("", example="0x579cB2931869Ea158Bcd7b7823a3a0c543486b93")
     chat_id: str = Field("", example="bnrevd0tjC9zWbpyN7dU")
 
-class CharactersResponse(BaseModel):
-    characters: List[CharacterMetaData] = Field([], example=[CharacterMetaData()])
+# class CharactersResponse(BaseModel):
+#     characters: List[CharacterMetaData] = Field([], example=[CharacterMetaData()])
 
 class CharacterMemoryData:
     timestamp: int = Field(-1, exmple=1686497747)
@@ -36,5 +36,5 @@ class CharacterMemoryData:
     linked_nft_contract_address: str = Field("", exmple="0x579cB2931869Ea158Bcd7b7823a3a0c543400000")
     linked_nft_contract_id: int = Field(-1, exmple=2)
 
-class CharacterMemoriesResponse(BaseModel):
-    memories: List[CharacterMemoryData] = Field([], example=[CharacterMemoryData()])
+# class CharacterMemoriesResponse(BaseModel):
+#     memories: List[CharacterMemoryData] = Field([], example=[CharacterMemoryData()])

@@ -11,3 +11,5 @@ typing
 openai
 base58
 diffusers
+firebase-admin
+google-cloud-firestore

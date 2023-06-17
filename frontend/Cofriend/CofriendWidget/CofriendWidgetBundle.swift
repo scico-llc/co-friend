@@ -12,6 +12,5 @@ import SwiftUI
 struct CofriendWidgetBundle: WidgetBundle {
     var body: some Widget {
         CofriendWidget()
-        CofriendWidgetLiveActivity()
     }
 }

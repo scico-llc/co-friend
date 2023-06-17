@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1CD4CCC32A35B68100803BA2 /* CofriendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC22A35B68100803BA2 /* CofriendApp.swift */; };
-		1CD4CCC52A35B68100803BA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC42A35B68100803BA2 /* ContentView.swift */; };
 		1CD4CCC72A35B68200803BA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC62A35B68200803BA2 /* Assets.xcassets */; };
 		1CD4CCCA2A35B68200803BA2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC92A35B68200803BA2 /* Preview Assets.xcassets */; };
 		1CD4CCD72A35B84700803BA2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD4CCD62A35B84700803BA2 /* WidgetKit.framework */; };
 		1CD4CCD92A35B84700803BA2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD4CCD82A35B84700803BA2 /* SwiftUI.framework */; };
 		1CD4CCDC2A35B84700803BA2 /* CofriendWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4CCDB2A35B84700803BA2 /* CofriendWidgetBundle.swift */; };
-		1CD4CCDE2A35B84700803BA2 /* CofriendWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4CCDD2A35B84700803BA2 /* CofriendWidgetLiveActivity.swift */; };
 		1CD4CCE02A35B84700803BA2 /* CofriendWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4CCDF2A35B84700803BA2 /* CofriendWidget.swift */; };
 		1CD4CCE22A35B84900803BA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD4CCE12A35B84900803BA2 /* Assets.xcassets */; };
 		1CD4CCE62A35B84900803BA2 /* CofriendWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1CD4CCD42A35B84700803BA2 /* CofriendWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -51,14 +49,12 @@
 /* Begin PBXFileReference section */
 		1CD4CCBF2A35B68100803BA2 /* Cofriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cofriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD4CCC22A35B68100803BA2 /* CofriendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CofriendApp.swift; sourceTree = "<group>"; };
-		1CD4CCC42A35B68100803BA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1CD4CCC62A35B68200803BA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CD4CCC92A35B68200803BA2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1CD4CCD42A35B84700803BA2 /* CofriendWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CofriendWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD4CCD62A35B84700803BA2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1CD4CCD82A35B84700803BA2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		1CD4CCDB2A35B84700803BA2 /* CofriendWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CofriendWidgetBundle.swift; sourceTree = "<group>"; };
-		1CD4CCDD2A35B84700803BA2 /* CofriendWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CofriendWidgetLiveActivity.swift; sourceTree = "<group>"; };
 		1CD4CCDF2A35B84700803BA2 /* CofriendWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CofriendWidget.swift; sourceTree = "<group>"; };
 		1CD4CCE12A35B84900803BA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CD4CCE32A35B84900803BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,10 +106,10 @@
 		1CD4CCC12A35B68100803BA2 /* Cofriend */ = {
 			isa = PBXGroup;
 			children = (
+				1CD6A0F32A3DE8CE00EB0095 /* Entity */,
 				D75275C72A388C9000D0FDCF /* Feature */,
 				D75275C62A388C8300D0FDCF /* APIClient */,
 				1CD4CCC22A35B68100803BA2 /* CofriendApp.swift */,
-				1CD4CCC42A35B68100803BA2 /* ContentView.swift */,
 				1CD4CCC62A35B68200803BA2 /* Assets.xcassets */,
 				1CD4CCC82A35B68200803BA2 /* Preview Content */,
 			);
@@ -141,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				1CD4CCDB2A35B84700803BA2 /* CofriendWidgetBundle.swift */,
-				1CD4CCDD2A35B84700803BA2 /* CofriendWidgetLiveActivity.swift */,
 				1CD4CCDF2A35B84700803BA2 /* CofriendWidget.swift */,
 				1CD4CCE12A35B84900803BA2 /* Assets.xcassets */,
 				1CD4CCE32A35B84900803BA2 /* Info.plist */,
@@ -155,6 +150,14 @@
 				1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */,
 			);
 			path = Top;
+			sourceTree = "<group>";
+		};
+		1CD6A0F32A3DE8CE00EB0095 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				1CD6A0EC2A3D52AA00EB0095 /* Message.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		D75275C62A388C8300D0FDCF /* APIClient */ = {
@@ -178,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				1CD6A0E82A3A069200EB0095 /* ChatView.swift */,
-				1CD6A0EC2A3D52AA00EB0095 /* Message.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -293,7 +295,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD6A0EF2A3D834700EB0095 /* MakeFriendView.swift in Sources */,
-				1CD4CCC52A35B68100803BA2 /* ContentView.swift in Sources */,
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,
 				1CD6A0F22A3DB3EB00EB0095 /* TopView.swift in Sources */,
@@ -306,7 +307,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD4CCE02A35B84700803BA2 /* CofriendWidget.swift in Sources */,
-				1CD4CCDE2A35B84700803BA2 /* CofriendWidgetLiveActivity.swift in Sources */,
 				1CD4CCDC2A35B84700803BA2 /* CofriendWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from routers import characters, chats
-from firebase.firestore import initialize
+from firebase.firebase import initialize
 
 initialize()
 app = FastAPI()

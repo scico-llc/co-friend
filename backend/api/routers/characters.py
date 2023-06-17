@@ -1,9 +1,10 @@
 import sys
 sys.path.append('../')
-from generate_image import generate_image
+from generate_image.generate import generate_image
 from fastapi import APIRouter
 import schemas.character as sch
-import base58
+import firebase.firebase as fb
+import base64
 
 router = APIRouter()
 
@@ -12,11 +13,11 @@ router = APIRouter()
 async def generate_character_image(
     reqBody: sch.CharacterImagePrompt,
 ) -> sch.CharacterInagesResponse:
-    walletAddress = reqBody.wallet_address[2:]
-    seed = int.from_bytes(base58.b58decode(walletAddress), "big")
+    seed_byte = reqBody.wallet_address[2:12]
+    seed = int.from_bytes(base64.b64decode(seed_byte+ '=' * (-len(seed_byte) % 4)), 'big')
     images = generate_image(reqBody.animal_type, seed)
-    # TODO: Firebase Storageに保存する
-    return sch.CharacterInagesResponse()
+    urls = fb.updaload_image(images, reqBody.animal_id)
+    return sch.CharacterInagesResponse(urls)
 
 
 @router.post("/characters/mint")
@@ -24,6 +25,7 @@ async def mint_character(
     reqBody: sch.CharacterMint,
 ) -> sch.CharacterMintResponse:
     # TODO: Mintコントラクトを実行する
+    print(2)
     return sch.CharacterMintResponse()
 
 # @router.get("/characters")

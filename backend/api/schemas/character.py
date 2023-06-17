@@ -3,13 +3,14 @@ from pydantic import BaseModel, Field
 
 class CharacterImagePrompt(BaseModel):
     wallet_address: str = Field(None, example="0x3CCcF9DFaC3D0Ff6A20aD2a6396fE8119b10A92e")
+    animal_id: str = Field(None, example="xxxxxxxxxxxx123")
     animal_type: str = Field(None, example="dog")
 
 class CharacterInagesResponse(BaseModel):
     image_urls: List[str] = Field([], example=["https://xxx", "https://yyy"])
 
 class CharacterMint(BaseModel):
-    animal_type: str = Field(None, example="dog")
+    ERC721: str = Field(None, example="dog")
     image_url: str = Field(None, example="https://xxx")
     raw_transaction:  str = Field(None, example="0x001122...")
 

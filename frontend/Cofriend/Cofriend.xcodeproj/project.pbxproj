@@ -20,6 +20,7 @@
 		1CD4CCE62A35B84900803BA2 /* CofriendWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1CD4CCD42A35B84700803BA2 /* CofriendWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0E82A3A069200EB0095 /* ChatView.swift */; };
 		1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0EC2A3D52AA00EB0095 /* Message.swift */; };
+		1CD6A0EF2A3D834700EB0095 /* MakeFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0EE2A3D834700EB0095 /* MakeFriendView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		1CD4CCE32A35B84900803BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CD6A0E82A3A069200EB0095 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		1CD6A0EC2A3D52AA00EB0095 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		1CD6A0EE2A3D834700EB0095 /* MakeFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFriendView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 		D75275C92A388D1700D0FDCF /* MakeFriend */ = {
 			isa = PBXGroup;
 			children = (
+				1CD6A0EE2A3D834700EB0095 /* MakeFriendView.swift */,
 			);
 			path = MakeFriend;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CD6A0EF2A3D834700EB0095 /* MakeFriendView.swift in Sources */,
 				1CD4CCC52A35B68100803BA2 /* ContentView.swift in Sources */,
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,

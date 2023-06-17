@@ -8,20 +8,30 @@
 import SwiftUI
 
 struct ChatView: View {
-    let message1 = Message(autherName: "Person",
-                          autherImageName: "person",
-                          text: "Sampleだよ")
-    let message2 = Message(autherName: "Person",
-                          autherImageName: "person",
-                          text: "SampleだよSampleだよSampleだよSampleだよSampleだよ")
+    let messages: [Message]
+    @State private var input = ""
     
     var body: some View {
-        VStack(spacing: 16) {
-            MessageView(message: message1)
-            MessageView(message: message2)
-            MessageView(message: message1)
+        VStack(spacing: 0) {
+            List {
+                ForEach(messages) { message in
+                    MessageView(message: message)
+                }.listRowSeparator(.hidden)
+            }.listStyle(.plain)
+                .padding(.horizontal, 12)
+            HStack(spacing: 8) {
+                TextField("Message",
+                          text: $input)
+                .textFieldStyle(.roundedBorder)
+                Button(action: {
+                    print("tapped")
+                }, label: {
+                    Image(systemName: "arrow.up.circle.fill")
+                        .resizable()
+                        .frame(width: 32, height: 32)
+                })
+            }.padding(18)
         }
-        .padding(.horizontal, 16)
     }
 }
 
@@ -45,14 +55,14 @@ struct MessageView: View {
     }
 }
 
-struct Message {
-    let autherName: String
-    let autherImageName: String
-    let text: String
-}
-
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatView(messages: [Message(id: 0, autherName: "Person",
+                                    autherImageName: "person",
+                                    text: "Sampleだよ"),
+                            Message(id: 1, autherName: "Person",
+                                    autherImageName: "person",
+                                    text: "SampleだよSampleだよSampleだよSampleだよSampleだよ")
+        ])
     }
 }

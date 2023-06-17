@@ -5,6 +5,7 @@ services:
     container_name: "api"
     volumes:
       - ./api:/api
+      - ./models:/models
     build: .
     ports:
       - 8080:8080

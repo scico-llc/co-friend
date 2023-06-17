@@ -1,24 +1,21 @@
 from typing import List
-from diffusers import UniPCMultistepScheduler
-from diffusers import StableDiffusionPipeline
+from diffusers import UniPCMultistepScheduler, StableDiffusionPipeline
 from rembg import remove
-from PIL.Image import Image as PILImage
 
 import os
 import torch
 import requests
 from safetensors.torch import load_file
-
 from . import model_util
 
-def generate_image(animal_name: str, seed: int) -> List[PILImage]:
+def generate_image(animal_name: str, seed: int) -> List[str]:
     # Modelの確認・変換と取得
     safetensors_path = "../../models/anything-v5.safetensors"
-    safetensors_url = "https://huggingface.co/ckpt/anything-v5.0/resolve/main/AnythingV5V3_v5PrtRE.safetensors"
     model_path = "../../models/anything-v5"
+
+    safetensors_url = "https://huggingface.co/ckpt/anything-v5.0/resolve/main/AnythingV5V3_v5PrtRE.safetensors"
     ref_name = "stablediffusionapi/anything-v5"
     if not os.path.isfile(safetensors_path):
-        print("download Model")
         urlData = requests.get(safetensors_url).content
         with open(safetensors_path, mode="wb") as f:
             f.write(urlData)
@@ -27,10 +24,9 @@ def generate_image(animal_name: str, seed: int) -> List[PILImage]:
         convert(safetensors_path, model_path, ref_name)
 
     # Loraの確認と取得
-    lora_path = "../../models/CuteCreatures.safetensors"
+    lora_path = "../models/CuteCreatures.safetensors"
     lora_url = "https://civitai.com/api/download/models/64757"
     if not os.path.isfile(lora_path):
-        print("download Lora")
         urlData = requests.get(lora_url).content
         with open(lora_path, mode="wb") as f:
             f.write(urlData)
@@ -56,7 +52,10 @@ def generate_image(animal_name: str, seed: int) -> List[PILImage]:
         num_images_per_prompt=3,
     ).images
 
-    return [remove(img) for img in images]
+    # 一時保存
+    images = [remove(img).save(f'./{i}.png') for i, img in enumerate(images)]
+    return [f'./{i}.png' for i in 0..len(images)]
+
 
 
 def convert(model_to_load: str, model_to_save: str, ref: str):

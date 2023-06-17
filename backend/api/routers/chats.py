@@ -9,21 +9,21 @@ router = APIRouter()
 
 
 @router.post("/chat")
-async def send_chat(
-    reqBody: sch.ChatRequest,
-):
-    return chat.character_chat(
+async def send_chat(reqBody: sch.ChatRequest) -> sch.ChatResponse:
+    message = chat.character_chat(
         reqBody.animal_id,
         reqBody.message,
     )
 
+    return sch.ChatResponse(reqBody.animal_id, message)
+
 
 @router.post("/chat/setting")
-async def send_chat(
-    reqBody: sch.ChatSetting,
-):
-    return chat.get_character_setting(
+async def send_chat(reqBody: sch.ChatSetting):
+    chat.get_character_setting(
         reqBody.animal_id,
         reqBody.animal_type,
         reqBody.animal_name,
     )
+
+    return

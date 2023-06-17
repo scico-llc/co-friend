@@ -51,7 +51,7 @@ def get_character_setting(
 def character_chat(
     animal_id: str,
     message: str = "",
-) -> None:
+) -> str:
     db = firestore.client()
     # firestoreから履歴を読み込む
     doc_ref = db.collection("characters").document(animal_id)
@@ -62,6 +62,8 @@ def character_chat(
     # firestoreにresponseを追加
     history.extend(new_history)
     doc_ref.update({"history": history})
+
+    return new_history[1]
 
 
 def completion(new_message_text: str = "", past_messages: list = []) -> list:

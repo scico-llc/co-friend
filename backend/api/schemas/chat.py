@@ -9,3 +9,7 @@ class ChatSetting(BaseModel):
 class ChatRequest(BaseModel):
     animal_id: str = Field(None, example="xxxxxxxxxxxx123")
     message: str = Field(None, example="サンプルメッセージ")
+
+class ChatResponse(BaseModel):
+    animal_id: str = Field(None, example="xxxxxxxxxxxx123")
+    message: str = Field(None, example="応答メッセージ")

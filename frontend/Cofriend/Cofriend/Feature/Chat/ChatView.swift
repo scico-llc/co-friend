@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct ChatView: View {
-    let messages: [Message]
+    let messages: [Message] = (0..<10).map { i in
+        Message(id: i,
+                autherName: "Person",
+                autherImageName: "person",
+                text: "Sampleだよ")
+    }
     @State private var input = ""
     
     var body: some View {
@@ -57,12 +62,6 @@ struct MessageView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(messages: [Message(id: 0, autherName: "Person",
-                                    autherImageName: "person",
-                                    text: "Sampleだよ"),
-                            Message(id: 1, autherName: "Person",
-                                    autherImageName: "person",
-                                    text: "SampleだよSampleだよSampleだよSampleだよSampleだよ")
-        ])
+        ChatView()
     }
 }

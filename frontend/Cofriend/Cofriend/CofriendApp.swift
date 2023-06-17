@@ -11,7 +11,7 @@ import SwiftUI
 struct CofriendApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TopView()
         }
     }
 }

@@ -21,6 +21,7 @@
 		1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0E82A3A069200EB0095 /* ChatView.swift */; };
 		1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0EC2A3D52AA00EB0095 /* Message.swift */; };
 		1CD6A0EF2A3D834700EB0095 /* MakeFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0EE2A3D834700EB0095 /* MakeFriendView.swift */; };
+		1CD6A0F22A3DB3EB00EB0095 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		1CD6A0E82A3A069200EB0095 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		1CD6A0EC2A3D52AA00EB0095 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1CD6A0EE2A3D834700EB0095 /* MakeFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFriendView.swift; sourceTree = "<group>"; };
+		1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,14 @@
 			path = CofriendWidget;
 			sourceTree = "<group>";
 		};
+		1CD6A0F02A3DB3C100EB0095 /* Top */ = {
+			isa = PBXGroup;
+			children = (
+				1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */,
+			);
+			path = Top;
+			sourceTree = "<group>";
+		};
 		D75275C62A388C8300D0FDCF /* APIClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +167,7 @@
 		D75275C72A388C9000D0FDCF /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				1CD6A0F02A3DB3C100EB0095 /* Top */,
 				D75275C92A388D1700D0FDCF /* MakeFriend */,
 				D75275C82A388D0900D0FDCF /* Chat */,
 			);
@@ -285,6 +296,7 @@
 				1CD4CCC52A35B68100803BA2 /* ContentView.swift in Sources */,
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,
+				1CD6A0F22A3DB3EB00EB0095 /* TopView.swift in Sources */,
 				1CD4CCC32A35B68100803BA2 /* CofriendApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

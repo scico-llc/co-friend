@@ -16,9 +16,6 @@ class CharacterMint(BaseModel):
     animal_type: str = Field(None, example="dog")
     animal_name: str = Field(None, example="doggy")
 
-class CharacterMintResponse(BaseModel):
-    is_success: str = Field(False, example=True)
-
 class CharacterHolders(BaseModel):
     wallet_address: str = Field("", example="0x3CCcF9DFaC3D0Ff6A20aD2a6396fE8119b10A92e")
 

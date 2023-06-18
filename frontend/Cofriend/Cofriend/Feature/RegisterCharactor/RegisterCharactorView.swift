@@ -58,7 +58,7 @@ struct RegisterCharacterViewContent: View {
     }
 }
 
-struct MakeFriendView_Previews: PreviewProvider {
+struct GenerateFriendView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterCharacterView()
     }

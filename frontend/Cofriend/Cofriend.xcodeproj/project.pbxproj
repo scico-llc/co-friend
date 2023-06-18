@@ -20,7 +20,8 @@
 		1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0EC2A3D52AA00EB0095 /* Message.swift */; };
 		1CD6A0EF2A3D834700EB0095 /* RegisterCharactorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */; };
 		1CD6A0F22A3DB3EB00EB0095 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */; };
-		1CD6A0F62A3EDDA600EB0095 /* MakeCharacterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F52A3EDDA600EB0095 /* MakeCharacterImage.swift */; };
+		1CD6A0F62A3EDDA600EB0095 /* GenerateCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F52A3EDDA600EB0095 /* GenerateCharacterView.swift */; };
+		1CD6A0F92A3EFD0D00EB0095 /* GenerateCharacterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F82A3EFD0D00EB0095 /* GenerateCharacterPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +64,8 @@
 		1CD6A0EC2A3D52AA00EB0095 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCharactorView.swift; sourceTree = "<group>"; };
 		1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
-		1CD6A0F52A3EDDA600EB0095 /* MakeCharacterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharacterImage.swift; sourceTree = "<group>"; };
+		1CD6A0F52A3EDDA600EB0095 /* GenerateCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCharacterView.swift; sourceTree = "<group>"; };
+		1CD6A0F82A3EFD0D00EB0095 /* GenerateCharacterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCharacterPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,14 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		1CD6A0F72A3EFCB100EB0095 /* RegisterCharactor */ = {
+			isa = PBXGroup;
+			children = (
+				1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */,
+			);
+			path = RegisterCharactor;
+			sourceTree = "<group>";
+		};
 		D75275C62A388C8300D0FDCF /* APIClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				D75275C82A388D0900D0FDCF /* Chat */,
-				D75275C92A388D1700D0FDCF /* MakeCharacter */,
+				D75275C92A388D1700D0FDCF /* GenerateCharacter */,
+				1CD6A0F72A3EFCB100EB0095 /* RegisterCharactor */,
 				1CD6A0F02A3DB3C100EB0095 /* Top */,
 			);
 			path = Feature;
@@ -187,13 +198,13 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		D75275C92A388D1700D0FDCF /* MakeCharacter */ = {
+		D75275C92A388D1700D0FDCF /* GenerateCharacter */ = {
 			isa = PBXGroup;
 			children = (
-				1CD6A0F52A3EDDA600EB0095 /* MakeCharacterImage.swift */,
-				1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */,
+				1CD6A0F52A3EDDA600EB0095 /* GenerateCharacterView.swift */,
+				1CD6A0F82A3EFD0D00EB0095 /* GenerateCharacterPresenter.swift */,
 			);
-			path = MakeCharacter;
+			path = GenerateCharacter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,8 +311,9 @@
 				1CD6A0EF2A3D834700EB0095 /* RegisterCharactorView.swift in Sources */,
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,
-				1CD6A0F62A3EDDA600EB0095 /* MakeCharacterImage.swift in Sources */,
+				1CD6A0F62A3EDDA600EB0095 /* GenerateCharacterView.swift in Sources */,
 				1CD6A0F22A3DB3EB00EB0095 /* TopView.swift in Sources */,
+				1CD6A0F92A3EFD0D00EB0095 /* GenerateCharacterPresenter.swift in Sources */,
 				1CD4CCC32A35B68100803BA2 /* CofriendApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

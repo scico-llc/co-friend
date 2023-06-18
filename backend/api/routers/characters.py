@@ -6,8 +6,11 @@ from fastapi import APIRouter, Depends
 import schemas.character as sch
 import firebase.firebase as fb
 import crypto.mint as mint
+<<<<<<< HEAD
 import crypto.account as acc
 
+=======
+>>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
 from . import auth
 import base64
 
@@ -25,21 +28,33 @@ async def generate_character_image(
     )
     images = generate_image(pipe, reqBody.animal_type, seed)
     urls = fb.updaload_image(images, reqBody.animal_id)
+<<<<<<< HEAD
+=======
+
+    return sch.CharacterInagesResponse(urls)
+>>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
 
     return sch.CharacterInagesResponse(urls)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
 @router.post("/characters/mint", dependencies=[Depends(auth.api_key_auth)])
 async def mint_character(
     reqBody: sch.CharacterMint,
 ):
     published = mint.get_friend_total_supply()
     token_id = published + 1
+<<<<<<< HEAD
     # NFTをMint
     mint.mint_nft(reqBody.wallet_address, published + 1)
     # Token bound Accountを作成
     acc.create_account_from_token_id(token_id)
     # TODO: アカウントに紐づくMemorySBTとDialogNFTをdeployして，addressをfirebaseに保存
+=======
+    mint.mint_nft(reqBody.wallet_address, published + 1)
+>>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
     fb.save_character_metadata(
         token_id,
         reqBody.animal_id,

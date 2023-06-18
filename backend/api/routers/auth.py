@@ -1,7 +1,13 @@
 import os
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
+<<<<<<< HEAD
 
+=======
+from dotenv import load_dotenv
+
+load_dotenv("../.env", verbose=True)
+>>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
 api_keys = [os.environ["SERVER_KEY"]]
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")  # use token authentication
 

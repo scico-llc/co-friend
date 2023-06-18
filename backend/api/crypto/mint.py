@@ -8,7 +8,11 @@ def get_friend_total_supply() -> int:
     CONTRACT_ADDRESS = os.getenv("NFT_CONTRACT_ADDRESS")
     w3 = Web3(Web3.HTTPProvider(NETWORK_RPC))
 
+<<<<<<< HEAD
     with open("./abi/FriendNFT.jon", "r") as file:
+=======
+    with open("./contracts/FriendNFT.jon", "r") as file:
+>>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
         contract_interface = file.read()
     contract_address = w3.toChecksumAddress(CONTRACT_ADDRESS)
     contract = w3.eth.contract(
@@ -31,7 +35,11 @@ def mint_nft(target_address: str, token_id: int):
     admin_wallet_address = w3.toChecksumAddress(ADMIN_WALLET_ADDRESS)
     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
+<<<<<<< HEAD
     with open("./abi/FriendNFT.jon", "r") as file:
+=======
+    with open("./contracts/FriendNFT.jon", "r") as file:
+>>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
         contract_interface = file.read()
     contract_address = w3.toChecksumAddress(CONTRACT_ADDRESS)
     contract = w3.eth.contract(
@@ -68,7 +76,11 @@ def mint_sbt(friend_token_id: int, token_id: int):
     admin_wallet_address = w3.toChecksumAddress(ADMIN_WALLET_ADDRESS)
     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
+<<<<<<< HEAD
     with open("./abi/MemorySBT.jon", "r") as file:
+=======
+    with open("./contracts/MemorySBT.jon", "r") as file:
+>>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
         contract_interface = file.read()
     contract_address = w3.toChecksumAddress(CONTRACT_ADDRESS)
     contract = w3.eth.contract(

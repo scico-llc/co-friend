@@ -1,15 +1,15 @@
 const {default: Web3} = require("web3");
 
-const CONTRACT_ADDRESS = "0x0165878A594ca255338adfa4d48449f69242Eb8F";
+const CONTRACT_ADDRESS = "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853";
 const PUBLIC_KEY = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
 const PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
-const TARGET_KEY="0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+const TARGET_KEY="0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
 const PROVIDER_URL = "http://localhost:8545";
 
 
 async function mintNFT() {
     const web3 = new Web3(PROVIDER_URL);
-    const contract = require("../artifacts/contracts/FriendNFT.sol/FriendNFT.json");
+    const contract = require("../../artifacts/contracts/MemorySBT.sol/MemorySBT.json");
     const nftContract = new web3.eth.Contract(contract.abi, CONTRACT_ADDRESS);
     const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest");
     const tx = {
@@ -17,8 +17,8 @@ async function mintNFT() {
         to: CONTRACT_ADDRESS,
         nonce: nonce,
         gas: 500000,
-        gasPrice: 401880840,
-        data: nftContract.methods.safeMint(TARGET_KEY).encodeABI(),
+        gasPrice: 540505584,
+        data: nftContract.methods.safeMint(TARGET_KEY, 1).encodeABI(),
     };
 
     const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);

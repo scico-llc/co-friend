@@ -9,7 +9,7 @@ const PROVIDER_URL = "http://localhost:8545";
 
 async function mintNFT() {
     const web3 = new Web3(PROVIDER_URL);
-    const contract = require("../artifacts/contracts/FriendNFT.sol/FriendNFT.json");
+    const contract = require("../../artifacts/contracts/FriendNFT.sol/FriendNFT.json");
     const nftContract = new web3.eth.Contract(contract.abi, CONTRACT_ADDRESS);
     const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest");
     const tx = {
@@ -17,8 +17,8 @@ async function mintNFT() {
         to: CONTRACT_ADDRESS,
         nonce: nonce,
         gas: 500000,
-        gasPrice: 401880840,
-        data: nftContract.methods.safeMint(TARGET_KEY).encodeABI(),
+        gasPrice: 540505584,
+        data: nftContract.methods.safeMint(TARGET_KEY, 1).encodeABI(),
     };
 
     const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);

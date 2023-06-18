@@ -6,6 +6,8 @@ from fastapi import APIRouter, Depends
 import schemas.character as sch
 import firebase.firebase as fb
 import crypto.mint as mint
+import crypto.account as acc
+
 from . import auth
 import base64
 
@@ -33,7 +35,11 @@ async def mint_character(
 ):
     published = mint.get_friend_total_supply()
     token_id = published + 1
+    # NFTをMint
     mint.mint_nft(reqBody.wallet_address, published + 1)
+    # Token bound Accountを作成
+    acc.create_account_from_token_id(token_id)
+    # TODO: アカウントに紐づくMemorySBTとDialogNFTをdeployして，addressをfirebaseに保存
     fb.save_character_metadata(
         token_id,
         reqBody.animal_id,

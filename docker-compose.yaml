@@ -17,9 +17,9 @@ services:
   api:
     container_name: "api"
     volumes:
-      - ./api:/api
-      - ./models:/models
-    build: .
+      - ./backend/api:/api
+      - ./backend/models:/models
+    build: ./backend
     ports:
       - 8080:8080
     deploy:

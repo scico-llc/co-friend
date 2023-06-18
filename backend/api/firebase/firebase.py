@@ -23,5 +23,6 @@ def updaload_image(files: list[str], animal_id: str) -> list[str]:
         blob.upload_from_filename(path, content_type=content_type)
         blob.make_public()
         urls.append(blob.public_url)
+        os.remove(path)
 
     return urls

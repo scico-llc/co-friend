@@ -2,7 +2,6 @@ import os
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 
-<<<<<<< HEAD
 
 def create_account_from_token_id(token_id: int):
     NETWORK_RPC = os.getenv("NETWORK_RPC")
@@ -40,8 +39,6 @@ def create_account_from_token_id(token_id: int):
     w3.eth.wait_for_transaction_receipt(tx_hash)
 
 
-=======
->>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
 def get_account_from_token_id(token_id: int) -> str:
     NETWORK_RPC = os.getenv("NETWORK_RPC")
     FRIEND_NFT_ADDRESS = os.getenv("FRIEND_NFT_ADDRESS")
@@ -50,11 +47,7 @@ def get_account_from_token_id(token_id: int) -> str:
     w3 = Web3(Web3.HTTPProvider(NETWORK_RPC))
     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-<<<<<<< HEAD
     with open("./abi/AccountRegistry.jon", "r") as file:
-=======
-    with open("./contracts/AccountRegistry.jon", "r") as file:
->>>>>>> f7aaa01b68a78f1151b868e47da0cee295c084e9
         contract_interface = file.read()
     contract_address = w3.toChecksumAddress(REGISTRY_ADDRESS)
     contract = w3.eth.contract(

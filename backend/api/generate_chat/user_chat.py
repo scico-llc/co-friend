@@ -58,26 +58,28 @@ def character_chat(
     doc_ref = db.collection("characters").document(animal_id)
     character_data = doc_ref.get().to_dict()
     history = character_data['history']
-    # chatを実施
-    new_history = completion(message, copy.deepcopy(history))
-    # firestoreにresponseを追加
-    history.extend(new_history)
+    message_data = {"role": "user", "content": message}
+    history.append(message_data)
     doc_ref.update({"history": history})
 
-    return new_history[1]
+    # chatを実施
+    response = completion(copy.deepcopy(history))
+
+    # firestoreにresponseを追加
+    history.append(response)
+    doc_ref.update({"history": history})
+
+    return response
 
 
-def completion(new_message_text: str = "", past_messages: list = []) -> list:
-    new_message = {"role": "user", "content": new_message_text}
-    past_messages.append(new_message)
-
+def completion(messages: list = []) -> dict:
     response = openai.ChatCompletion.create(
         model=model_name,
-        messages=past_messages,
+        messages=messages,
     )
     response_message = {
         "role": "assistant",
         "content": response.choices[0].message.content
     }
 
-    return [new_message, response_message]
+    return response_message

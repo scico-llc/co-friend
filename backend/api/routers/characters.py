@@ -1,13 +1,13 @@
 import sys
 sys.path.append('../')
-from generate_image.generate import generate_image
+from generate_image.generate import initialize_diffusers, generate_image
 from fastapi import APIRouter
 import schemas.character as sch
 import firebase.firebase as fb
 import base64
 
 router = APIRouter()
-
+pipe = initialize_diffusers()
 
 @router.post("/characters/image")
 async def generate_character_image(
@@ -15,7 +15,7 @@ async def generate_character_image(
 ) -> sch.CharacterInagesResponse:
     seed_byte = reqBody.wallet_address[2:12]
     seed = int.from_bytes(base64.b64decode(seed_byte+ '=' * (-len(seed_byte) % 4)), 'big')
-    images = generate_image(reqBody.animal_type, seed)
+    images = generate_image(pipe, reqBody.animal_type, seed)
     urls = fb.updaload_image(images, reqBody.animal_id)
     return sch.CharacterInagesResponse(urls)
 

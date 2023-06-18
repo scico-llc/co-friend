@@ -11,7 +11,7 @@ def get_character_setting(
     animal_id: str,
     animal_type: str,
     animal_name: str,
-) -> str:
+) -> None:
     # 人格の決定
     with open("./generate_chat/prompts/character_detail_prompt.txt") as f:
         character_text = f.read()
@@ -43,9 +43,10 @@ def get_character_setting(
             "type": animal_type,
             "name": animal_name,
             "history": history,
+            "profile": profile,
+
         }
     )
-    return profile
 
 
 def character_chat(

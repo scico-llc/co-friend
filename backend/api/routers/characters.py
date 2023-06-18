@@ -1,15 +1,16 @@
 import sys
 sys.path.append('../')
 from generate_image.generate import initialize_diffusers, generate_image
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 import schemas.character as sch
 import firebase.firebase as fb
+from . import auth
 import base64
 
 router = APIRouter()
 pipe = initialize_diffusers()
 
-@router.post("/characters/image")
+@router.post("/characters/image", dependencies=[Depends(auth.api_key_auth)])
 async def generate_character_image(
     reqBody: sch.CharacterImagePrompt,
 ) -> sch.CharacterInagesResponse:
@@ -21,7 +22,7 @@ async def generate_character_image(
     return sch.CharacterInagesResponse(urls)
 
 
-@router.post("/characters/mint")
+@router.post("/characters/mint", dependencies=[Depends(auth.api_key_auth)])
 async def mint_character(
     reqBody: sch.CharacterMint,
 ) -> sch.CharacterMintResponse:

@@ -9,7 +9,7 @@ import requests
 from safetensors.torch import load_file
 from . import model_util
 
-def initialize_diffusers():
+def initialize_diffusers() -> StableDiffusionPipeline:
     device = 'cuda'
     safetensors_path = "./models/anything-v5.safetensors"
     model_path = "./models/anything-v5"
@@ -17,12 +17,9 @@ def initialize_diffusers():
     safetensors_url = "https://huggingface.co/ckpt/anything-v5.0/resolve/main/AnythingV5V3_v5PrtRE.safetensors"
     ref_name = "stablediffusionapi/anything-v5"
     if not os.path.isfile(safetensors_path):
-        print('get model')
         urlData = requests.get(safetensors_url).content
-        print('save model')
         with open(safetensors_path, mode="wb") as f:
             f.write(urlData)
-        print('load model')
         convert(safetensors_path, model_path, ref_name)
     if not os.path.isdir(model_path):
         convert(safetensors_path, model_path, ref_name)
@@ -31,9 +28,7 @@ def initialize_diffusers():
     lora_path = "./models/CuteCreatures.safetensors"
     lora_url = "https://civitai.com/api/download/models/64757"
     if not os.path.isfile(lora_path):
-        print('get lora')
         urlData = requests.get(lora_url).content
-        print('save lora')
         with open(lora_path, mode="wb") as f:
             f.write(urlData)
 
@@ -43,8 +38,10 @@ def initialize_diffusers():
     pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config)
     pipe.to(device)
 
+    return pipe
 
-def generate_image(pipe, animal_name: str, seed: int) -> List[str]:
+
+def generate_image(pipe: StableDiffusionPipeline, animal_name: str, seed: int) -> List[str]:
     # Generativeの生成
     device = 'cuda'
     generator = torch.manual_seed(seed)
@@ -63,9 +60,13 @@ def generate_image(pipe, animal_name: str, seed: int) -> List[str]:
             num_images_per_prompt=3,
         ).images
 
+    outputs = []
     # 一時保存
-    images = [remove(img).save(f'./{i}.png') for i, img in enumerate(images)]
-    # return [f'./{i}.png' for i in 0..len(images)]
+    for i, img in enumerate(images):
+        file_name = f'./.generated/{i}.png'
+        remove(img).save(file_name)
+        outputs.append(file_name)
+    return outputs
 
 
 def convert(model_to_load: str, model_to_save: str, ref: str):

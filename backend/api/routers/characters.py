@@ -17,6 +17,7 @@ async def generate_character_image(
     seed = int.from_bytes(base64.b64decode(seed_byte+ '=' * (-len(seed_byte) % 4)), 'big')
     images = generate_image(pipe, reqBody.animal_type, seed)
     urls = fb.updaload_image(images, reqBody.animal_id)
+    
     return sch.CharacterInagesResponse(urls)
 
 

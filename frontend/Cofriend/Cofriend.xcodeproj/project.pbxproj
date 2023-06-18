@@ -18,8 +18,9 @@
 		1CD4CCE62A35B84900803BA2 /* CofriendWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1CD4CCD42A35B84700803BA2 /* CofriendWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0E82A3A069200EB0095 /* ChatView.swift */; };
 		1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0EC2A3D52AA00EB0095 /* Message.swift */; };
-		1CD6A0EF2A3D834700EB0095 /* MakeFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0EE2A3D834700EB0095 /* MakeFriendView.swift */; };
+		1CD6A0EF2A3D834700EB0095 /* RegisterCharactorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */; };
 		1CD6A0F22A3DB3EB00EB0095 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */; };
+		1CD6A0F62A3EDDA600EB0095 /* MakeCharacterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F52A3EDDA600EB0095 /* MakeCharacterImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +61,9 @@
 		1CD4CCE32A35B84900803BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CD6A0E82A3A069200EB0095 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		1CD6A0EC2A3D52AA00EB0095 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		1CD6A0EE2A3D834700EB0095 /* MakeFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFriendView.swift; sourceTree = "<group>"; };
+		1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCharactorView.swift; sourceTree = "<group>"; };
 		1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		1CD6A0F52A3EDDA600EB0095 /* MakeCharacterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCharacterImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,9 +172,9 @@
 		D75275C72A388C9000D0FDCF /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				1CD6A0F02A3DB3C100EB0095 /* Top */,
-				D75275C92A388D1700D0FDCF /* MakeFriend */,
 				D75275C82A388D0900D0FDCF /* Chat */,
+				D75275C92A388D1700D0FDCF /* MakeCharacter */,
+				1CD6A0F02A3DB3C100EB0095 /* Top */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -185,12 +187,13 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		D75275C92A388D1700D0FDCF /* MakeFriend */ = {
+		D75275C92A388D1700D0FDCF /* MakeCharacter */ = {
 			isa = PBXGroup;
 			children = (
-				1CD6A0EE2A3D834700EB0095 /* MakeFriendView.swift */,
+				1CD6A0F52A3EDDA600EB0095 /* MakeCharacterImage.swift */,
+				1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */,
 			);
-			path = MakeFriend;
+			path = MakeCharacter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,9 +297,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CD6A0EF2A3D834700EB0095 /* MakeFriendView.swift in Sources */,
+				1CD6A0EF2A3D834700EB0095 /* RegisterCharactorView.swift in Sources */,
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,
+				1CD6A0F62A3EDDA600EB0095 /* MakeCharacterImage.swift in Sources */,
 				1CD6A0F22A3DB3EB00EB0095 /* TopView.swift in Sources */,
 				1CD4CCC32A35B68100803BA2 /* CofriendApp.swift in Sources */,
 			);

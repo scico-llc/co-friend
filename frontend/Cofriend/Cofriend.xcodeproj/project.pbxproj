@@ -22,6 +22,7 @@
 		1CD6A0F22A3DB3EB00EB0095 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */; };
 		1CD6A0F62A3EDDA600EB0095 /* GenerateCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F52A3EDDA600EB0095 /* GenerateCharacterView.swift */; };
 		1CD6A0F92A3EFD0D00EB0095 /* GenerateCharacterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0F82A3EFD0D00EB0095 /* GenerateCharacterPresenter.swift */; };
+		1CD6A0FC2A3F082C00EB0095 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A0FB2A3F082C00EB0095 /* View+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		1CD6A0F12A3DB3EB00EB0095 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		1CD6A0F52A3EDDA600EB0095 /* GenerateCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCharacterView.swift; sourceTree = "<group>"; };
 		1CD6A0F82A3EFD0D00EB0095 /* GenerateCharacterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCharacterPresenter.swift; sourceTree = "<group>"; };
+		1CD6A0FB2A3F082C00EB0095 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		1CD4CCC12A35B68100803BA2 /* Cofriend */ = {
 			isa = PBXGroup;
 			children = (
+				1CD6A0FA2A3F081A00EB0095 /* Extensions */,
 				1CD6A0F32A3DE8CE00EB0095 /* Entity */,
 				D75275C72A388C9000D0FDCF /* Feature */,
 				D75275C62A388C8300D0FDCF /* APIClient */,
@@ -170,6 +173,14 @@
 				1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */,
 			);
 			path = RegisterCharactor;
+			sourceTree = "<group>";
+		};
+		1CD6A0FA2A3F081A00EB0095 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1CD6A0FB2A3F082C00EB0095 /* View+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D75275C62A388C8300D0FDCF /* APIClient */ = {
@@ -310,6 +321,7 @@
 			files = (
 				1CD6A0EF2A3D834700EB0095 /* RegisterCharactorView.swift in Sources */,
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
+				1CD6A0FC2A3F082C00EB0095 /* View+Extension.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,
 				1CD6A0F62A3EDDA600EB0095 /* GenerateCharacterView.swift in Sources */,
 				1CD6A0F22A3DB3EB00EB0095 /* TopView.swift in Sources */,

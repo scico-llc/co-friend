@@ -11,8 +11,8 @@ from . import model_util
 
 def initialize_diffusers() -> StableDiffusionPipeline:
     device = 'cuda'
-    safetensors_path = "./models/anything-v5.safetensors"
-    model_path = "./models/anything-v5"
+    safetensors_path = "../models/anything-v5.safetensors"
+    model_path = "../models/anything-v5"
 
     safetensors_url = "https://huggingface.co/ckpt/anything-v5.0/resolve/main/AnythingV5V3_v5PrtRE.safetensors"
     ref_name = "stablediffusionapi/anything-v5"
@@ -25,7 +25,7 @@ def initialize_diffusers() -> StableDiffusionPipeline:
         convert(safetensors_path, model_path, ref_name)
 
     # Loraの確認と取得
-    lora_path = "./models/CuteCreatures.safetensors"
+    lora_path = "../models/CuteCreatures.safetensors"
     lora_url = "https://civitai.com/api/download/models/64757"
     if not os.path.isfile(lora_path):
         urlData = requests.get(lora_url).content

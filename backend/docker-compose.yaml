@@ -1,6 +1,19 @@
 version: "3.0"
 
 services:
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - api
+    restart: always
+    environment:
+      DOMAINS: 'co-friend-dev.sci-co.co.jp -> http://api:8080'
+      STAGE: 'production'
+      # FORCE_RENEW: 'true'
+
   api:
     container_name: "api"
     volumes:
@@ -9,5 +22,10 @@ services:
     build: .
     ports:
       - 8080:8080
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
     env_file:
       - .env

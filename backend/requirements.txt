@@ -4,7 +4,7 @@ transformers
 xformers
 accelerate
 safetensors
-rembg
+rembg[gpu]
 torchvision
 pydantic
 typing

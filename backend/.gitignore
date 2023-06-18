@@ -1,4 +1,6 @@
 .env
-/models/*/
+/models/*
 *.safetensors
 *.pyc
+venv
+anything-v5

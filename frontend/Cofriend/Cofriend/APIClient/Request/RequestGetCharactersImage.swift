@@ -8,8 +8,6 @@
 import Alamofire
 
 struct RequestGetCharactersImage: APIRequest {
-    // var parameters: [String : String]
-    
     typealias ResponseBody = GetCharactersImageResponse
     typealias APIParameters = GetCharactersImageParameters
     
@@ -27,6 +25,12 @@ struct GetCharactersImageParameters: Encodable {
     let walletAddress: String
     let animalId: String
     let animalType: String
+    
+    enum CodingKeys: String, CodingKey {
+        case walletAddress = "wallet_address"
+        case animalId = "animal_id"
+        case animalType = "animal_type"
+    }
 }
 
 struct GetCharactersImageResponse: Decodable {

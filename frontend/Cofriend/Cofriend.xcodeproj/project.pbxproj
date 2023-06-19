@@ -28,6 +28,7 @@
 		1CD6A1052A3F48FF00EB0095 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1042A3F48FF00EB0095 /* APIRequest.swift */; };
 		1CD6A1092A3F49BD00EB0095 /* RequestGetCharactersImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1082A3F49BD00EB0095 /* RequestGetCharactersImage.swift */; };
 		1CD6A10C2A407BCA00EB0095 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1CD6A10B2A407BCA00EB0095 /* Alamofire */; };
+		1CD6A10F2A40870F00EB0095 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A10E2A40870F00EB0095 /* UserDefaultsClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		1CD6A1002A3F2EC500EB0095 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1CD6A1042A3F48FF00EB0095 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		1CD6A1082A3F49BD00EB0095 /* RequestGetCharactersImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGetCharactersImage.swift; sourceTree = "<group>"; };
+		1CD6A10E2A40870F00EB0095 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,14 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		1CD6A10D2A4086E600EB0095 /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				1CD6A10E2A40870F00EB0095 /* UserDefaultsClient.swift */,
+			);
+			path = LocalStorage;
+			sourceTree = "<group>";
+		};
 		D75275C62A388C8300D0FDCF /* APIClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +241,7 @@
 		D75275C72A388C9000D0FDCF /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				1CD6A10D2A4086E600EB0095 /* LocalStorage */,
 				D75275C82A388D0900D0FDCF /* Chat */,
 				D75275C92A388D1700D0FDCF /* GenerateCharacter */,
 				1CD6A0F72A3EFCB100EB0095 /* RegisterCharactor */,
@@ -375,6 +386,7 @@
 				1CD6A0F92A3EFD0D00EB0095 /* GenerateCharacterPresenter.swift in Sources */,
 				1CD4CCC32A35B68100803BA2 /* CofriendApp.swift in Sources */,
 				1CD6A0FE2A3F274000EB0095 /* APIClient.swift in Sources */,
+				1CD6A10F2A40870F00EB0095 /* UserDefaultsClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,6 +38,7 @@
 		1CD6A1242A40C03A00EB0095 /* RequestPostChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1232A40C03A00EB0095 /* RequestPostChat.swift */; };
 		1CD6A1262A40C0E500EB0095 /* RequestPostChatSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1252A40C0E500EB0095 /* RequestPostChatSetting.swift */; };
 		1CD6A1282A40C17800EB0095 /* RequestPostChatTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1272A40C17700EB0095 /* RequestPostChatTopic.swift */; };
+		1CD6A12A2A40C50B00EB0095 /* RegisterComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1292A40C50B00EB0095 /* RegisterComplete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		1CD6A1232A40C03A00EB0095 /* RequestPostChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostChat.swift; sourceTree = "<group>"; };
 		1CD6A1252A40C0E500EB0095 /* RequestPostChatSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostChatSetting.swift; sourceTree = "<group>"; };
 		1CD6A1272A40C17700EB0095 /* RequestPostChatTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostChatTopic.swift; sourceTree = "<group>"; };
+		1CD6A1292A40C50B00EB0095 /* RegisterComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterComplete.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 				1CD6A1132A40A41B00EB0095 /* CharacterViewPresenter.swift */,
 				1CD6A0F52A3EDDA600EB0095 /* GenerateCharacterView.swift */,
 				1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */,
+				1CD6A1292A40C50B00EB0095 /* RegisterComplete.swift */,
 			);
 			path = CharacterView;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
 				1CD6A1142A40A41C00EB0095 /* CharacterViewPresenter.swift in Sources */,
 				1CD6A1242A40C03A00EB0095 /* RequestPostChat.swift in Sources */,
+				1CD6A12A2A40C50B00EB0095 /* RegisterComplete.swift in Sources */,
 				1CD6A0FC2A3F082C00EB0095 /* View+Extension.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,
 				1CD6A1262A40C0E500EB0095 /* RequestPostChatSetting.swift in Sources */,

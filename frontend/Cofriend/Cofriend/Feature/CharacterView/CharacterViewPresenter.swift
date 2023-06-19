@@ -9,7 +9,7 @@ import Foundation
 
 extension CharacterView {
     @MainActor struct ViewState {
-        fileprivate(set) var viewKind: CharacterViewKind = .generateCharacter
+        fileprivate(set) var viewKind: CharacterViewKind = .generate
         
         // GenerateCharacter画面で利用
         fileprivate(set) var animalTypeText: String = ""
@@ -34,28 +34,28 @@ extension CharacterView.Presenter {
     }
     
     func onTapGenerateImageButton() {
-        viewState.viewKind = .generatingCharacter
+        viewState.viewKind = .generating
         Task {
             do {
                 let animalId = UUID().uuidString
                 let parameters = PostCharactersImageParameters(walletAddress: Constants.walletAddress,
-                                                              animalId: animalId,
-                                                              animalType: viewState.animalTypeText)
+                                                               animalId: animalId,
+                                                               animalType: viewState.animalTypeText)
                 let request = RequestPostCharactersImage(parameters: parameters)
                 let response = try await APIClient.request(request)
 
                 // Mock
                 // let animalId = "1234"
                 // let response = PostCharactersImageResponse(imageUrls: ["https://storage.googleapis.com/co-friend-dev.appspot.com/1234/0.png",
-                //                                                      "https://storage.googleapis.com/co-friend-dev.appspot.com/1234/1.png",
-                //                                                      "https://storage.googleapis.com/co-friend-dev.appspot.com/1234/2.png"])
+                //                                                        "https://storage.googleapis.com/co-friend-dev.appspot.com/1234/1.png",
+                //                                                        "https://storage.googleapis.com/co-friend-dev.appspot.com/1234/2.png"])
 
                 viewState.animalId = animalId
                 viewState.animalImageUrls = response.imageUrls
-                viewState.viewKind = .registerCharacter
+                viewState.viewKind = .register
             } catch let error {
                 print("error occurred:", error)
-                viewState.viewKind = .generateCharacter
+                viewState.viewKind = .generate
             }
         }
     }
@@ -74,23 +74,31 @@ extension CharacterView.Presenter {
     }
     
     func onTapRegisterButton() {
-        viewState.viewKind = .registeringCharacter
+        viewState.viewKind = .registering
         Task {
             do {
-                let parameters = PostCharactersMintParameters(walletAddress: Constants.walletAddress,
+                // Mintリクエスト
+                let mintParam = PostCharactersMintParameters(walletAddress: Constants.walletAddress,
                                                               imageUrl: viewState.selectedAnimalImageUrl,
-                                                              animalId: "1234",
+                                                             animalId: viewState.animalId,
                                                               animalType: viewState.animalTypeText,
                                                               animalName: viewState.animalName)
-                let request = RequestPostCharactersMint(parameters: parameters)
-                let _ = try await APIClient.request(request)
+                let mintRequest = RequestPostCharactersMint(parameters: mintParam)
+                _ = try await APIClient.request(mintRequest)
+                
+                // チャットの設定リクスト
+                let chatSettingParams = PostChatSettingParameters(animalId: viewState.animalId,
+                                                                  animalType: viewState.animalTypeText,
+                                                                  animalName: viewState.animalName)
+                let chatSettingRequest = RequestPostChatSetting(parameters: chatSettingParams)
+                _ = try await APIClient.request(chatSettingRequest)
                 
                 UserDefaultsClient.animalId = viewState.animalId
                 UserDefaultsClient.animalImageUrl = viewState.selectedAnimalImageUrl
-                viewState.viewKind = .registerCharacter
+                viewState.viewKind = .register
             } catch let error {
                 print("error occurred:", error)
-                viewState.viewKind = .registerCharacter
+                viewState.viewKind = .register
             }
         }
     }

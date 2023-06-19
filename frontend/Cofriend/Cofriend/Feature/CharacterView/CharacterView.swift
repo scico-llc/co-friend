@@ -8,10 +8,11 @@
 import SwiftUI
 
 enum CharacterViewKind {
-    case generateCharacter
-    case generatingCharacter
-    case registerCharacter
-    case registeringCharacter
+    case generate
+    case generating
+    case register
+    case registering
+    case complete
 }
 
 struct CharacterView: View {
@@ -19,14 +20,16 @@ struct CharacterView: View {
     
     var body: some View {
         switch presenter.viewState.viewKind {
-        case .generateCharacter:
+        case .generate:
             GenerateCharacterView(presenter: presenter)
-        case .generatingCharacter:
+        case .generating:
             ProgressView()
-        case .registerCharacter:
+        case .register:
             RegisterCharacterView(presenter: presenter)
-        case .registeringCharacter:
+        case .registering:
             ProgressView()
+        case .complete:
+            RegisterCompleteView()
         }
     }
 }

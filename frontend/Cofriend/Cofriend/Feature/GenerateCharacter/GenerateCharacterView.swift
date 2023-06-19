@@ -10,12 +10,16 @@ import SwiftUI
 struct GenerateCharacterView: View {
     let presenter: Presenter
     
+    init () {
+        presenter = .init()
+    }
+    
     var body: some View {
         ZStack {
+            ProgressView()
+                .isHidden(!presenter.viewState.loading)
             GenerateCharacterViewContent(presenter: presenter)
-        }
-        .onAppear {
-            presenter.onAppear()
+                .isHidden(presenter.viewState.loading)
         }
     }
 }
@@ -28,7 +32,11 @@ struct GenerateCharacterViewContent: View {
             Spacer().frame(height: 32)
             VStack {
                 Text("キャラクター種類")
-                TextField("ネコ", text: presenter.viewState.$characterKindText)
+                TextField("ネコ", text: .init(get: {
+                    presenter.viewState.animalTypeText
+                }, set: { text in
+                    presenter.onAnimalTypeTextChange(text)
+                }))
             }.padding(.horizontal, 32)
             Spacer()
             Button(action: {
@@ -43,7 +51,7 @@ struct GenerateCharacterViewContent: View {
 
 struct GenerateCharacterImage_Previews: PreviewProvider {
     static var previews: some View {
-        let presenter = GenerateCharacterView.Presenter()
-        GenerateCharacterView(presenter: presenter)
+        // let presenter = GenerateCharacterView.Presenter()
+        GenerateCharacterView()
     }
 }

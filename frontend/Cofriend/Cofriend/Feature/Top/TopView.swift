@@ -11,7 +11,7 @@ struct TopView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: RegisterCharacterView()) {
+                NavigationLink(destination: GenerateCharacterView()) {
                     Text("友達を作る")
                         .frame(minWidth: 250, minHeight: 50)
                 }

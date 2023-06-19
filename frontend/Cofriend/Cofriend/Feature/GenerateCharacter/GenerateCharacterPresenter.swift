@@ -8,20 +8,35 @@
 import SwiftUI
 
 extension GenerateCharacterView {
-    final class ViewState: ObservableObject {
-        @State var characterKindText: String = ""
-        @State var loading: Bool = false
+    struct ViewState {
+        fileprivate(set) var animalTypeText: String = ""
+        fileprivate(set) var loading: Bool = false
     }
     
-    struct Presenter {
-        let viewState = ViewState()
+    final class Presenter: ObservableObject {
+        @Published private(set) var viewState = ViewState()
         
-        func onAppear() {
-            print("onAppear")
+        func onAnimalTypeTextChange(_ text: String) {
+            viewState.animalTypeText = text
         }
         
         func onTapGenerateImageButton() {
-            print("onTapGenerateImageButton")
+            viewState.loading = true
+            Task {
+                do {
+                    let uuid = UUID()
+                    let parameters = GetCharactersImageParameters(walletAddress: Constants.walletAddress,
+                                                                  animalId: uuid.uuidString,
+                                                                  animalType: viewState.animalTypeText)
+                    let request = RequestGetCharactersImage(parameters: parameters)
+                    let response = try await APIClient.request(request)
+                    viewState.loading = false
+                    print(response.imageUrls)
+                } catch let error {
+                    print("error occurred:", error)
+                }
+            }
         }
     }
 }
+

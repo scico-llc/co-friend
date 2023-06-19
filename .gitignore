@@ -1,1 +1,9 @@
 .env
+
+# middleware
+middleware/default_server
+*.pem
+*.key
+*.crt
+*.csr
+*.stamp

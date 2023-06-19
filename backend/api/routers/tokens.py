@@ -12,11 +12,11 @@ router = APIRouter()
 async def get_nft_metadata(id: str) -> sch.NFTMetaData:
     metadata = fb.fetch_character_metadata(id)
     return sch.NFTMetaData(
-        description=metadata["description"],
+        description=metadata["description"].replace("\\n", "\n"),
         external_url="",
         image=metadata["image"],
         name=metadata["name"],
-        attributes=[],
+        attributes=metadata["attributes"],
     )
 
 
@@ -24,7 +24,7 @@ async def get_nft_metadata(id: str) -> sch.NFTMetaData:
 async def get_sbt_metadata(id: str) -> sch.NFTMetaData:
     metadata = fb.fetch_memory_metadata(id)
     return sch.NFTMetaData(
-        description=metadata["description"],
+        description=metadata["description"].replace("\\n", "\n"),
         external_url="",
         image="",
         name=metadata["name"],

@@ -12,7 +12,9 @@ services:
     environment:
       DOMAINS: 'co-friend-dev.sci-co.co.jp -> http://api:8080'
       STAGE: 'production'
-      # FORCE_RENEW: 'true'
+      PROXY_CONNECT_TIMEOUT: 300
+      PROXY_SEND_TIMEOUT: 300
+      PROXY_READ_TIMEOUT: 300
 
   api:
     container_name: "api"
@@ -29,3 +31,5 @@ services:
             - capabilities: [gpu]
     env_file:
       - .env
+
+  

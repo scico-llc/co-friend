@@ -13,5 +13,4 @@ base58
 diffusers
 firebase-admin
 google-cloud-firestore
-python-dotenv
 web3

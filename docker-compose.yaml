@@ -1,5 +1,4 @@
-version: "3.0"
-
+version: "3.8"
 services:
   https-portal:
     image: steveltn/https-portal:1
@@ -8,18 +7,22 @@ services:
       - '443:443'
     links:
       - api
+    volumes:
+      - ./middleware:/var/lib/https-portal
     restart: always
     environment:
       DOMAINS: 'co-friend-dev.sci-co.co.jp -> http://api:8080'
       STAGE: 'production'
-      # FORCE_RENEW: 'true'
-
   api:
     container_name: "api"
     volumes:
       - ./backend/api:/api
       - ./backend/models:/models
-    build: ./backend
+      - ./backend/abi:/abi
+      - ./backend/prompts:/prompts
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
     ports:
       - 8080:8080
     deploy:

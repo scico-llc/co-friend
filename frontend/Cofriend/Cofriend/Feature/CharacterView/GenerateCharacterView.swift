@@ -8,24 +8,16 @@
 import SwiftUI
 
 struct GenerateCharacterView: View {
-    let presenter: Presenter
     
-    init () {
-        presenter = .init()
-    }
-    
+    @ObservedObject private(set) var presenter: CharacterView.Presenter
+        
     var body: some View {
-        ZStack {
-            ProgressView()
-                .isHidden(!presenter.viewState.loading)
-            GenerateCharacterViewContent(presenter: presenter)
-                .isHidden(presenter.viewState.loading)
-        }
+        GenerateCharacterViewContent(presenter: presenter)
     }
 }
 
 struct GenerateCharacterViewContent: View {
-    let presenter: GenerateCharacterView.Presenter
+    let presenter: CharacterView.Presenter
     
     var body: some View {
         VStack {
@@ -51,7 +43,6 @@ struct GenerateCharacterViewContent: View {
 
 struct GenerateCharacterImage_Previews: PreviewProvider {
     static var previews: some View {
-        // let presenter = GenerateCharacterView.Presenter()
-        GenerateCharacterView()
+        GenerateCharacterView(presenter: CharacterView.Presenter())
     }
 }

@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct RegisterCharacterView: View {
+    @ObservedObject private(set) var presenter: CharacterView.Presenter
+    
     var body: some View {
-        RegisterCharacterViewContent()
+        RegisterCharacterViewContent(presenter: presenter)
     }
 }
 
 struct RegisterCharacterViewContent: View {
-    @State private var name = ""
-    @State private var images = ["https://img.freepik.com/free-photo/cute-kitten-staring-out-the-window-playful-curiosity-generative-ai_188544-12520.jpg", "https://img.freepik.com/premium-photo/shiba-inu-dog-sitting-and-panting-cut-out_191971-5628.jpg"]
+    let presenter: CharacterView.Presenter
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -25,10 +26,11 @@ struct RegisterCharacterViewContent: View {
                 
                 HStack {
                                     
-                    ForEach(images, id: \.self) { image in
+                    ForEach(presenter.viewState.animalImageUrls, id: \.self) { imageUrl in
                         Button(action: {
+                            presenter.onTapAnimalImage(imageUrl)
                         }, label: {
-                            AsyncImage(url: URL(string: image)) { image in
+                            AsyncImage(url: URL(string: imageUrl)) { image in
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -41,14 +43,17 @@ struct RegisterCharacterViewContent: View {
                                     
                 Text("Step2 名前を付けよう！")
                     .font(.subheadline)
-                TextField("Input friend name",
-                            text: $name)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.bottom, 12)
+                TextField("名前", text: .init(get: {
+                    presenter.viewState.animalName
+                }, set: { text in
+                    presenter.onAnimalNameTextChange(text)
+                }))
+                .textFieldStyle(.roundedBorder)
+                .padding(.bottom, 12)
             }
             Spacer()
             Button(action: {
-                print("tapped")
+                presenter.onTapRegisterButton()
             }, label: {
                 Text("確定")
             })
@@ -60,6 +65,6 @@ struct RegisterCharacterViewContent: View {
 
 struct GenerateFriendView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterCharacterView()
+        RegisterCharacterView(presenter: CharacterView.Presenter())
     }
 }

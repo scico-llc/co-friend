@@ -17,6 +17,27 @@ struct ChatView: View {
     @State private var input = ""
     
     var body: some View {
+        let content = ChatContetView(messages: messages, input: input)
+        
+        return NavigationStack {
+            content
+                .onAppear { print("onAppear ChatView") }
+        }.navigationBarTitle("CO-Friend", displayMode: .automatic)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: CharacterView()) {
+                        Image(systemName: "plus.circle")
+                    }
+                }
+            }
+    }
+}
+
+struct ChatContetView: View {
+    let messages: [Message]
+    @State var input: String
+    
+    var body: some View {
         VStack(spacing: 0) {
             List {
                 ForEach(messages) { message in

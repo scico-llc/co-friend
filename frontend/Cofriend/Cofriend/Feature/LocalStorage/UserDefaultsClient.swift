@@ -17,27 +17,27 @@ enum UserDefaultsClient {
         UserDefaults.standard.set(value, forKey: item.rawValue)
     }
     
-    private static func string(forKey item: StringItem) -> String {
-        UserDefaults.standard.string(forKey: item.rawValue) ?? ""
+    private static func string(forKey item: StringItem) -> String? {
+        UserDefaults.standard.string(forKey: item.rawValue)
     }
 }
 
 extension UserDefaultsClient {
-    static var animalId: String {
+    static var animalId: String? {
         get {
             return string(forKey: .animalId)
         }
         set {
-            set(value: newValue, forKey: .animalId)
+            set(value: newValue!, forKey: .animalId)
         }
     }
     
-    static var animalImageUrl: String {
+    static var animalImageUrl: String? {
         get {
             return string(forKey: .animalImageUrl)
         }
         set {
-            set(value: newValue, forKey: .animalImageUrl)
+            set(value: newValue!, forKey: .animalImageUrl)
         }
     }
 }

@@ -8,20 +8,16 @@
 import SwiftUI
 
 struct ChatView: View {
-    let messages: [Message] = (0..<10).map { i in
-        Message(id: i,
-                autherName: "Person",
-                autherImageName: "person",
-                text: "Sampleだよ")
-    }
-    @State private var input = ""
+    @ObservedObject private(set) var presenter = Presenter()
     
     var body: some View {
-        let content = ChatContetView(messages: messages, input: input)
+        let content = ChatContetView(presenter: presenter)
         
         return NavigationStack {
             content
-                .onAppear { print("onAppear ChatView") }
+                .onAppear {
+                    presenter.onAppeare()
+                }
         }.navigationBarTitle("CO-Friend", displayMode: .automatic)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -34,23 +30,26 @@ struct ChatView: View {
 }
 
 struct ChatContetView: View {
-    let messages: [Message]
-    @State var input: String
+    @ObservedObject private(set) var presenter: ChatView.Presenter
     
     var body: some View {
         VStack(spacing: 0) {
             List {
-                ForEach(messages) { message in
+                ForEach(0 ..< presenter.viewState.chat.history.count, id: \.self) { index in
+                    let message = presenter.viewState.chat.history[index]
                     MessageView(message: message)
                 }.listRowSeparator(.hidden)
             }.listStyle(.plain)
                 .padding(.horizontal, 12)
             HStack(spacing: 8) {
-                TextField("Message",
-                          text: $input)
+                TextField("Message", text: .init(get: {
+                    presenter.viewState.messageInputText
+                }, set: { text in
+                    presenter.onMessageInputTextChange(text)
+                }))
                 .textFieldStyle(.roundedBorder)
                 Button(action: {
-                    print("tapped")
+                    presenter.onTapSendMessageButton()
                 }, label: {
                     Image(systemName: "arrow.up.circle.fill")
                         .resizable()
@@ -65,15 +64,15 @@ struct MessageView: View {
     let message: Message
     var body: some View {
         HStack(alignment: .center) {
-            Image(systemName: message.autherImageName)
+            Image(systemName: "person")
                 .resizable()
                 .frame(width: 24, height: 24)
                 .cornerRadius(10)
             VStack(alignment: .leading) {
-                Text(message.autherName)
+                Text(message.role)
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                Text(message.text)
+                Text(message.content)
                     .font(.body)
             }
             Spacer()

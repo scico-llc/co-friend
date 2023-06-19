@@ -5,9 +5,12 @@
 //  Created by Atsushi Otsubo on 2023/06/17.
 //
 
-struct Message: Identifiable {
-    let id: Int
-    let autherName: String
-    let autherImageName: String
-    let text: String
+struct Message: Codable, Hashable {
+    let role: String
+    let content: String
+    
+    enum CodingKeys: String, CodingKey {
+        case role
+        case content
+    }
 }

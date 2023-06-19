@@ -26,7 +26,8 @@ struct RegisterCharacterViewContent: View {
                 
                 HStack {
                                     
-                    ForEach(presenter.viewState.animalImageUrls, id: \.self) { imageUrl in
+                    ForEach(0 ..< presenter.viewState.animalImageUrls.count, id: \.self) { index in
+                        let imageUrl = presenter.viewState.animalImageUrls[index]
                         Button(action: {
                             presenter.onTapAnimalImage(imageUrl)
                         }, label: {

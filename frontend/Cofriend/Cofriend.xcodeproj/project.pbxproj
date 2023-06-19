@@ -39,6 +39,7 @@
 		1CD6A1262A40C0E500EB0095 /* RequestPostChatSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1252A40C0E500EB0095 /* RequestPostChatSetting.swift */; };
 		1CD6A1282A40C17800EB0095 /* RequestPostChatTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1272A40C17700EB0095 /* RequestPostChatTopic.swift */; };
 		1CD6A12A2A40C50B00EB0095 /* RegisterComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1292A40C50B00EB0095 /* RegisterComplete.swift */; };
+		1CD6A12C2A40CD1100EB0095 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A12B2A40CD1100EB0095 /* Chat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		1CD6A1252A40C0E500EB0095 /* RequestPostChatSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostChatSetting.swift; sourceTree = "<group>"; };
 		1CD6A1272A40C17700EB0095 /* RequestPostChatTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostChatTopic.swift; sourceTree = "<group>"; };
 		1CD6A1292A40C50B00EB0095 /* RegisterComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterComplete.swift; sourceTree = "<group>"; };
+		1CD6A12B2A40CD1100EB0095 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				1CD6A0EC2A3D52AA00EB0095 /* Message.swift */,
+				1CD6A12B2A40CD1100EB0095 /* Chat.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -220,13 +223,6 @@
 				1CD6A1272A40C17700EB0095 /* RequestPostChatTopic.swift */,
 			);
 			path = Request;
-			sourceTree = "<group>";
-		};
-		1CD6A1072A3F496400EB0095 /* Response */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Response;
 			sourceTree = "<group>";
 		};
 		1CD6A10D2A4086E600EB0095 /* LocalStorage */ = {
@@ -260,7 +256,6 @@
 		D75275C62A388C8300D0FDCF /* APIClient */ = {
 			isa = PBXGroup;
 			children = (
-				1CD6A1072A3F496400EB0095 /* Response */,
 				1CD6A1062A3F495B00EB0095 /* Request */,
 				1CD6A0FD2A3F274000EB0095 /* APIClient.swift */,
 				1CD6A1042A3F48FF00EB0095 /* APIRequest.swift */,
@@ -407,6 +402,7 @@
 				1CD6A1242A40C03A00EB0095 /* RequestPostChat.swift in Sources */,
 				1CD6A12A2A40C50B00EB0095 /* RegisterComplete.swift in Sources */,
 				1CD6A0FC2A3F082C00EB0095 /* View+Extension.swift in Sources */,
+				1CD6A12C2A40CD1100EB0095 /* Chat.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,
 				1CD6A1262A40C0E500EB0095 /* RequestPostChatSetting.swift in Sources */,
 				1CD6A11D2A40B67400EB0095 /* ChatViewPresenter.swift in Sources */,

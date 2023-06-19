@@ -35,6 +35,9 @@
 		1CD6A11D2A40B67400EB0095 /* ChatViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A11C2A40B67400EB0095 /* ChatViewPresenter.swift */; };
 		1CD6A1202A40B70D00EB0095 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A11F2A40B70D00EB0095 /* FirestoreClient.swift */; };
 		1CD6A1222A40B89400EB0095 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CD6A1212A40B89400EB0095 /* GoogleService-Info.plist */; };
+		1CD6A1242A40C03A00EB0095 /* RequestPostChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1232A40C03A00EB0095 /* RequestPostChat.swift */; };
+		1CD6A1262A40C0E500EB0095 /* RequestPostChatSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1252A40C0E500EB0095 /* RequestPostChatSetting.swift */; };
+		1CD6A1282A40C17800EB0095 /* RequestPostChatTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1272A40C17700EB0095 /* RequestPostChatTopic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +92,9 @@
 		1CD6A11C2A40B67400EB0095 /* ChatViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewPresenter.swift; sourceTree = "<group>"; };
 		1CD6A11F2A40B70D00EB0095 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		1CD6A1212A40B89400EB0095 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1CD6A1232A40C03A00EB0095 /* RequestPostChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostChat.swift; sourceTree = "<group>"; };
+		1CD6A1252A40C0E500EB0095 /* RequestPostChatSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostChatSetting.swift; sourceTree = "<group>"; };
+		1CD6A1272A40C17700EB0095 /* RequestPostChatTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostChatTopic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +213,9 @@
 			children = (
 				1CD6A1082A3F49BD00EB0095 /* RequestPostCharactersImage.swift */,
 				1CD6A1152A40ADBC00EB0095 /* RequestPostCharactersMint.swift */,
+				1CD6A1232A40C03A00EB0095 /* RequestPostChat.swift */,
+				1CD6A1252A40C0E500EB0095 /* RequestPostChatSetting.swift */,
+				1CD6A1272A40C17700EB0095 /* RequestPostChatTopic.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -388,11 +397,14 @@
 			files = (
 				1CD6A1202A40B70D00EB0095 /* FirestoreClient.swift in Sources */,
 				1CD6A0EF2A3D834700EB0095 /* RegisterCharactorView.swift in Sources */,
+				1CD6A1282A40C17800EB0095 /* RequestPostChatTopic.swift in Sources */,
 				1CD6A1162A40ADBC00EB0095 /* RequestPostCharactersMint.swift in Sources */,
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
 				1CD6A1142A40A41C00EB0095 /* CharacterViewPresenter.swift in Sources */,
+				1CD6A1242A40C03A00EB0095 /* RequestPostChat.swift in Sources */,
 				1CD6A0FC2A3F082C00EB0095 /* View+Extension.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,
+				1CD6A1262A40C0E500EB0095 /* RequestPostChatSetting.swift in Sources */,
 				1CD6A11D2A40B67400EB0095 /* ChatViewPresenter.swift in Sources */,
 				1CD6A0F62A3EDDA600EB0095 /* GenerateCharacterView.swift in Sources */,
 				1CD6A1012A3F2EC500EB0095 /* Constants.swift in Sources */,

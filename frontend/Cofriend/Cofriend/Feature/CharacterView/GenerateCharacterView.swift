@@ -22,20 +22,25 @@ struct GenerateCharacterViewContent: View {
     var body: some View {
         VStack {
             Spacer().frame(height: 32)
-            VStack {
-                Text("キャラクター種類")
-                TextField("ネコ", text: .init(get: {
+            VStack(alignment: .leading) {
+                Text("キャラクターの種類")
+                    .font(.subheadline)
+                TextField("Example: Cat", text: .init(get: {
                     presenter.viewState.animalTypeText
                 }, set: { text in
                     presenter.onAnimalTypeTextChange(text)
                 }))
+                .frame(minHeight: 55)
+                .padding(.horizontal, 16)
+                .overlay(RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.gray))
+                
             }.padding(.horizontal, 32)
             Spacer()
-            Button(action: {
+            
+            FilledButton(text: "キャラクターを生み出す") {
                 presenter.onTapGenerateImageButton()
-            }, label: {
-                Text("作成")
-            })
+            }.padding(.horizontal, 32)
             Spacer().frame(height: 32)
         }
     }

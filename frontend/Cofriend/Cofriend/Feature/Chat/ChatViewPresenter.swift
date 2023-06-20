@@ -31,8 +31,8 @@ extension ChatView {
         }
         
         func onTapSendMessageButton() {
-            // guard let animalId = animalId else { return }
-            let animalId = "xxxxxxxxxxxx123"
+            guard let animalId = animalId else { return }
+//            let animalId = "xxxxxxxxxxxx123"
             
             Task {
                 do {
@@ -49,8 +49,10 @@ extension ChatView {
         }
         
         private func fetchChat() {
-            // guard let animalId = animalId else { return }
-            let animalId = "xxxxxxxxxxxx123"
+             guard let animalId = animalId else {
+                 viewState.chat = Chat(id: "", history: [Message(role: "System", content: "右上の ＋ マークから友達キャラクターを登録しましょう！")], name: "", type: "")
+                 return }
+//            let animalId = "xxxxxxxxxxxx123"
             
             Task {
                 do {

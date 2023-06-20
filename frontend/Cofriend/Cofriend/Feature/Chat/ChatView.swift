@@ -18,7 +18,7 @@ struct ChatView: View {
                 .onAppear {
                     presenter.onAppeare()
                 }
-        }.navigationBarTitle("CO-Friend", displayMode: .automatic)
+        }.navigationBarTitle("CO-friend", displayMode: .automatic)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: CharacterView()) {

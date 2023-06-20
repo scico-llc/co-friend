@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CA1998B2A413ECD0028D8ED /* ProcessingCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA1998A2A413ECD0028D8ED /* ProcessingCharacterView.swift */; };
 		1CD4CCC32A35B68100803BA2 /* CofriendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC22A35B68100803BA2 /* CofriendApp.swift */; };
 		1CD4CCC72A35B68200803BA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC62A35B68200803BA2 /* Assets.xcassets */; };
 		1CD4CCCA2A35B68200803BA2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC92A35B68200803BA2 /* Preview Assets.xcassets */; };
@@ -46,6 +47,8 @@
 		1CD6A14C2A411E9B00EB0095 /* RequestPostChatTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A14A2A411E9B00EB0095 /* RequestPostChatTopic.swift */; };
 		1CD6A1502A41280700EB0095 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A14F2A41280700EB0095 /* UserDefaultsClient.swift */; };
 		1CD6A1512A41280700EB0095 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A14F2A41280700EB0095 /* UserDefaultsClient.swift */; };
+		1CD6A1542A41385900EB0095 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1532A41385900EB0095 /* FilledButton.swift */; };
+		1CD6A1552A41385900EB0095 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6A1532A41385900EB0095 /* FilledButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1CA1998A2A413ECD0028D8ED /* ProcessingCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingCharacterView.swift; sourceTree = "<group>"; };
 		1CD4CCBF2A35B68100803BA2 /* Cofriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cofriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD4CCC22A35B68100803BA2 /* CofriendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CofriendApp.swift; sourceTree = "<group>"; };
 		1CD4CCC62A35B68200803BA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 		1CD6A14D2A41247D00EB0095 /* CofriendWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CofriendWidgetExtension.entitlements; sourceTree = "<group>"; };
 		1CD6A14E2A41258800EB0095 /* Cofriend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cofriend.entitlements; sourceTree = "<group>"; };
 		1CD6A14F2A41280700EB0095 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
+		1CD6A1532A41385900EB0095 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +166,7 @@
 				1CD4CCC22A35B68100803BA2 /* CofriendApp.swift */,
 				1CD4CCC62A35B68200803BA2 /* Assets.xcassets */,
 				D75275C62A388C8300D0FDCF /* APIClient */,
+				1CD6A1522A41384100EB0095 /* Common */,
 				1CD6A0FF2A3F2EBA00EB0095 /* Constants */,
 				1CD6A0F32A3DE8CE00EB0095 /* Entity */,
 				1CD6A0FA2A3F081A00EB0095 /* Extensions */,
@@ -250,6 +256,7 @@
 				1CD6A1112A40A2AB00EB0095 /* CharacterView.swift */,
 				1CD6A1132A40A41B00EB0095 /* CharacterViewPresenter.swift */,
 				1CD6A0F52A3EDDA600EB0095 /* GenerateCharacterView.swift */,
+				1CA1998A2A413ECD0028D8ED /* ProcessingCharacterView.swift */,
 				1CD6A0EE2A3D834700EB0095 /* RegisterCharactorView.swift */,
 				1CD6A1292A40C50B00EB0095 /* RegisterComplete.swift */,
 			);
@@ -262,6 +269,14 @@
 				1CD6A11F2A40B70D00EB0095 /* FirestoreClient.swift */,
 			);
 			path = FirestoreClient;
+			sourceTree = "<group>";
+		};
+		1CD6A1522A41384100EB0095 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1CD6A1532A41385900EB0095 /* FilledButton.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		D75275C62A388C8300D0FDCF /* APIClient */ = {
@@ -414,11 +429,13 @@
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
 				1CD6A1142A40A41C00EB0095 /* CharacterViewPresenter.swift in Sources */,
 				1CD6A14B2A411E9B00EB0095 /* RequestPostChatTopic.swift in Sources */,
+				1CD6A1542A41385900EB0095 /* FilledButton.swift in Sources */,
 				1CD6A1242A40C03A00EB0095 /* RequestPostChat.swift in Sources */,
 				1CD6A12A2A40C50B00EB0095 /* RegisterComplete.swift in Sources */,
 				1CD6A1452A411C2B00EB0095 /* APIClient.swift in Sources */,
 				1CD6A0FC2A3F082C00EB0095 /* View+Extension.swift in Sources */,
 				1CD6A12C2A40CD1100EB0095 /* Chat.swift in Sources */,
+				1CA1998B2A413ECD0028D8ED /* ProcessingCharacterView.swift in Sources */,
 				1CD6A0ED2A3D52AA00EB0095 /* Message.swift in Sources */,
 				1CD6A13D2A411B9200EB0095 /* Constants.swift in Sources */,
 				1CD6A1262A40C0E500EB0095 /* RequestPostChatSetting.swift in Sources */,
@@ -436,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD6A13E2A411B9200EB0095 /* Constants.swift in Sources */,
+				1CD6A1552A41385900EB0095 /* FilledButton.swift in Sources */,
 				1CD6A1512A41280700EB0095 /* UserDefaultsClient.swift in Sources */,
 				1CD4CCE02A35B84700803BA2 /* CofriendWidget.swift in Sources */,
 				1CD6A1442A411C2B00EB0095 /* APIRequest.swift in Sources */,

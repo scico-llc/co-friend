@@ -13,16 +13,16 @@ struct UserDefaultsClient {
     enum StringItem: String {
         case animalId
         case animalImageUrl
+        /// Widgetでのメッセージ取得が失敗した時用に最新のメッセージをキャッシュしておく
+        case cachedMessage
     }
     
     private static func set(value: String, forKey item: StringItem) {
         userDefaults?.set(value, forKey: item.rawValue)
-        //UserDefaults.standard.set(value, forKey: item.rawValue)
     }
     
     private static func string(forKey item: StringItem) -> String? {
         userDefaults?.string(forKey: item.rawValue)
-        // UserDefaults.standard.string(forKey: item.rawValue)
     }
 }
 
@@ -44,4 +44,14 @@ extension UserDefaultsClient {
             set(value: newValue!, forKey: .animalImageUrl)
         }
     }
+    
+    static var cachedMessage: String? {
+        get {
+            return string(forKey: .cachedMessage)
+        }
+        set {
+            set(value: newValue!, forKey: .cachedMessage)
+        }
+    }
+
 }

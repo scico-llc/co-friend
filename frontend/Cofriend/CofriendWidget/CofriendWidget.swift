@@ -20,7 +20,7 @@ struct Provider: TimelineProvider {
         CofriendWigetEntry(date: Date(), imageUrl: nil, message: "Placeholder")
     }
 
-    // プレビュー/ギャラリーに表示されるビュー、ユーザーがウィジェットを追加した際に最初に表示されるビュー
+    // ユーザーがウィジェットを追加した際に最初に表示されるビュー
     func getSnapshot(in context: Context, completion: @escaping (CofriendWigetEntry) -> ()) {
         Task {
             let entry = try await fetchEntry(date: Date())
@@ -28,6 +28,7 @@ struct Provider: TimelineProvider {
         }
     }
 
+    // 定期的に更新されるビュー
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         Task {
             let currentDate = Date()
@@ -39,18 +40,20 @@ struct Provider: TimelineProvider {
     }
     
     private func fetchEntry(date: Date) async throws -> CofriendWigetEntry {
-        let animalId = UserDefaultsClient.animalId ?? "xxxxxxxxxxxx123"
-        let imageUrl = UserDefaultsClient.animalImageUrl ?? "https://storage.googleapis.com/co-friend-dev.appspot.com/1234/0.png"
+        guard let animalId = UserDefaultsClient.animalId, let imageUrl = UserDefaultsClient.animalImageUrl else {
+            return CofriendWigetEntry(date: date, imageUrl: nil, message: "CO-friend アプリを開いてキャラクターを登録しましょう！")
+        }
        
         let parameters = PostChatTopicParameters(animalId: animalId)
         let request = RequestPostChatTopic(parameters: parameters)
-        print("request.path: ", request.path)
-        let response = try await APIClient.request(request)
-        print("response: ", response.message)
-        // Mock:
-//        let response = PostChatTopicResponse(animalId: animalId, message: "こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは")
-        
-        return CofriendWigetEntry(date: date, imageUrl: imageUrl, message: response.message)
+        do {
+            let response = try await APIClient.request(request)
+            UserDefaultsClient.cachedMessage = response.message
+            return CofriendWigetEntry(date: date, imageUrl: imageUrl, message: response.message)
+        } catch {
+            // APIからのメッセージ取得が失敗したときはキャッシュしておいたメッセージを表示するようにする
+            return CofriendWigetEntry(date: date, imageUrl: imageUrl, message: UserDefaultsClient.cachedMessage ?? "メッセージを取得中...")
+        }
     }
 }
 
@@ -99,8 +102,8 @@ struct CofriendWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             CofriendWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("CO-friend widget")
+        .description("キャラクターが語りかけてくれるウィジェットです！")
     }
 }
 

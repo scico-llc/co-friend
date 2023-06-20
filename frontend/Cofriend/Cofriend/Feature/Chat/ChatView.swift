@@ -52,10 +52,16 @@ struct ChatContetView: View {
                 Button(action: {
                     presenter.onTapSendMessageButton()
                 }, label: {
-                    Image(systemName: "arrow.up.circle.fill")
-                        .resizable()
-                        .frame(width: 32, height: 32)
+                    if presenter.viewState.chatSending {
+                        ProgressView()
+                            .frame(width: 32, height: 32)
+                    } else {
+                        Image(systemName: "arrow.up.circle.fill")
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                    }
                 })
+                .disabled(presenter.viewState.chatSending)
             }.padding(18)
         }
     }

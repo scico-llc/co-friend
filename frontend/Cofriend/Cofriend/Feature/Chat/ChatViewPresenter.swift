@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 extension ChatView {
     @MainActor struct ViewState {
         fileprivate(set) var messageInputText: String = ""
+        fileprivate(set) var chatSending: Bool = false
         fileprivate var chat: Chat = .init(id: "0", history: [], name: "", type: "")
         
         var chatMessages: [ChatMessage] {
@@ -37,7 +38,6 @@ extension ChatView {
     @MainActor final class Presenter: ObservableObject {
         @Published private(set) var viewState = ViewState()
         
-        
         func onAppeare() {
             viewState.animalId = UserDefaultsClient.animalId
             viewState.animalImageUrl = UserDefaultsClient.animalImageUrl
@@ -50,8 +50,8 @@ extension ChatView {
         
         func onTapSendMessageButton() {
             guard let animalId = viewState.animalId else { return }
-//            let animalId = "xxxxxxxxxxxx123"
             
+            viewState.chatSending = true
             Task {
                 do {
                     let parameters = PostChatParameters(animalId: animalId, message: viewState.messageInputText)
@@ -59,9 +59,11 @@ extension ChatView {
                     let response = try await APIClient.request(request)
                     print("response message:", response.message)
                     viewState.messageInputText = ""
+                    viewState.chatSending = false
                     fetchChat()
                 } catch {
                     print("onTapSendMessageButton error:", error)
+                    viewState.chatSending = false
                 }
             }
         }
@@ -70,7 +72,6 @@ extension ChatView {
             guard let animalId = viewState.animalId else {
                  viewState.chat = Chat(id: "", history: [Message(role: "System", content: "右上の ＋ マークから友達キャラクターを登録しましょう！")], name: "", type: "")
                  return }
-//            let animalId = "xxxxxxxxxxxx123"
             
             Task {
                 do {

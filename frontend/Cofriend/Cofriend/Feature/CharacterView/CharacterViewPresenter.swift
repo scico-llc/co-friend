@@ -77,6 +77,13 @@ extension CharacterView.Presenter {
         viewState.viewKind = .registering
         Task {
             do {
+                // チャットの設定リクエスト
+                let chatSettingParams = PostChatSettingParameters(animalId: viewState.animalId,
+                                                                  animalType: viewState.animalTypeText,
+                                                                  animalName: viewState.animalName)
+                let chatSettingRequest = RequestPostChatSetting(parameters: chatSettingParams)
+                _ = try await APIClient.request(chatSettingRequest)
+                
                 // Mintリクエスト
                 let mintParam = PostCharactersMintParameters(walletAddress: Constants.walletAddress,
                                                               imageUrl: viewState.selectedAnimalImageUrl,
@@ -85,13 +92,6 @@ extension CharacterView.Presenter {
                                                               animalName: viewState.animalName)
                 let mintRequest = RequestPostCharactersMint(parameters: mintParam)
                 _ = try await APIClient.request(mintRequest)
-                
-                // チャットの設定リクスト
-                let chatSettingParams = PostChatSettingParameters(animalId: viewState.animalId,
-                                                                  animalType: viewState.animalTypeText,
-                                                                  animalName: viewState.animalName)
-                let chatSettingRequest = RequestPostChatSetting(parameters: chatSettingParams)
-                _ = try await APIClient.request(chatSettingRequest)
                 
                 UserDefaultsClient.animalId = viewState.animalId
                 UserDefaultsClient.animalImageUrl = viewState.selectedAnimalImageUrl

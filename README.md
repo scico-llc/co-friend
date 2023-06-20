@@ -1,6 +1,5 @@
 # CO-friend
-![](/assets/image0.png)
-![DEMO動画はこちら](https://youtu.be/KakcQZDJGfM)
+![DEMO動画はこちら](/assets/image0.png)]([https://youtu.be/KakcQZDJGfM](https://www.youtube.com/watch?v=KakcQZDJGfM)
 CO-create, COntribute, COexistな友達。
 CO-friendは「常にあなたの隣で進化し続ける友達」をテーマにしています。
 

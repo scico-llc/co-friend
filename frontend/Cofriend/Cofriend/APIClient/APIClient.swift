@@ -21,7 +21,8 @@ enum APIClient {
                           method: request.method,
                           parameters: request.parameters,
                           encoder: request.encoder,
-                          headers: headers)
+                          headers: headers,
+                          requestModifier: { $0.timeoutInterval = 120 })
     }
     
     private static func validateAndDecode<T: Decodable>(_ dataRequest: DataRequest, of type: T.Type) async throws -> T {

@@ -1,5 +1,6 @@
 import os
 import openai
+import uuid
 import datetime
 from firebase_admin import firestore
 
@@ -61,34 +62,27 @@ def get_character_setting(animal_id: str) -> tuple:
 
 
 def save_conversation(my_id: str, your_id: str, timestamp: datetime) -> tuple:
-    now = timestamp.strftime("%Y年%m月%d日 %H:%M:%S")
-    conv_id = f"{my_id}-{your_id}"
-
+    conv_id = uuid.uuid4()
     db = firestore.client()
-    doc_ref = (
-        db.collection("character_conversations")
-        .document(conv_id)
-        .collection("memories")
-        .document(now)
-    )
-
+    doc_ref = db.collection("conversations").document(conv_id)
+    
     doc_ref.set(
         {
             "history": [],
-            "partner": your_id,
-            "timestamp": now,
+            "me": my_id,
+            "you": your_id,
+            "timestamp": timestamp,
         }
     )
 
-    return conv_id, now
+    return conv_id, conv_id
 
-def save_history(history: list, conv_id: str, now: str):
+
+def save_history(history: list, conv_id: str):
     db = firestore.client()
     doc_ref = (
-        db.collection("character_conversations")
+        db.collection("conversations")
         .document(conv_id)
-        .collection("memories")
-        .document(now)
     )
 
     doc_ref.update(
@@ -96,6 +90,7 @@ def save_history(history: list, conv_id: str, now: str):
             "history": [item for item in history if item["role"] != "system"],
         }
     )
+
 
 def start_bot(animal_ids: list[str]):
     if len(animal_ids) != 2:
@@ -151,3 +146,38 @@ def start_bot(animal_ids: list[str]):
         topic_prompt.append({"role": "assistant", "content": res})
         history1.append(event)
         history2.append(event)
+
+    save_dialy(id1, id2, history1)
+    save_dialy(id2, id1, history2)
+
+
+def save_dialy(animal_id: str, speaker_id: str, history: list):
+    save_history = [chat for chat in history if chat["role"] != "system"]
+    now = datetime.datetime.now(
+        datetime.timezone(datetime.timedelta(hours=9)),
+    )
+    memory_prompt = {
+        "role": "system",
+        "content": "会話の内容を日記小説のテイストで500文字程度にまとめてください。起承転結など、会話以外の内容も補完して記載してください。",
+    }
+    save_history.append(memory_prompt)
+
+    memory = (
+        openai.ChatCompletion.create(
+            model=model_name,
+            messages=save_history,
+        )
+        .choices[0]
+        .message.content
+    )
+
+    db = firestore.client()
+    doc_ref = db.collection("memories").document(f"{now.microsecond}")
+    doc_ref.set(
+        {
+            "memory": memory,
+            "animal_id": animal_id,
+            "speaker_id": speaker_id,
+            "timestamp": now,
+        }
+    )

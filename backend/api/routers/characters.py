@@ -37,7 +37,7 @@ async def mint_character(
     published = spl.get_friend_total_supply()
     token_id = published + 1
     # NFTをMint
-    mint.mint_nft(reqBody.wallet_address, published + 1)
+    mint.mint_cofriend_nft(reqBody.wallet_address, published + 1)
     # Token bound Accountを作成
     address = acc.create_account_from_token_id(token_id)
     attr = {

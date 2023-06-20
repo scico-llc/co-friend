@@ -44,7 +44,7 @@ async def get_dialy_nft_metadata(id: str) -> sch.NFTMetaData:
     return sch.NFTMetaData(
         description=metadata["description"].replace("\\n", "\n"),
         external_url="",
-        image="",
+        image=metadata["image_url"],
         name=metadata["name"],
-        attributes=[],
+        attributes=metadata["attributes"],
     )

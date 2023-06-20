@@ -31,7 +31,7 @@ def updaload_image(files: list[str], animal_id: str) -> list[str]:
 
 
 def save_character_metadata(
-    token_id: int, animal_id: str, animal_name: str, image_url: str, attr: dict = {}
+    token_id: int, animal_id: str, animal_name: str, image_url: str, attr: list = []
 ) -> None:
     db = firestore.client()
     character_ref = db.collection("characters").document(animal_id)
@@ -72,6 +72,7 @@ def save_memory_metadata(
         }
     )
 
+
 def save_dialy_metadata(
     token_id: int,
     title: str,
@@ -89,9 +90,7 @@ def save_dialy_metadata(
             "external_url": "",
             "image": image_url,
             "name": title,
-            "attributes": {
-                "author": author
-            },
+            "attributes": [{"trait_type": "Author", "value": author}],
         }
     )
 

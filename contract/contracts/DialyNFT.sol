@@ -16,4 +16,8 @@ contract DialyNFT is ERC721, Ownable {
     function _baseURI() internal view override returns (string memory)  {
         return "https://co-friend-dev.sci-co.co.jp/codal/metadata/";
     }
+
+    function burn(uint256 _tokenId) external onlyOwner{
+        super._burn( _tokenId);
+    }
 }

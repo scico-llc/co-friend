@@ -1,5 +1,4 @@
-version: "3.0"
-
+version: "3.8"
 services:
   https-portal:
     image: steveltn/https-portal:1
@@ -8,20 +7,22 @@ services:
       - '443:443'
     links:
       - api
+    volumes:
+      - ./middleware:/var/lib/https-portal
     restart: always
     environment:
       DOMAINS: 'co-friend-dev.sci-co.co.jp -> http://api:8080'
       STAGE: 'production'
-      PROXY_CONNECT_TIMEOUT: 300
-      PROXY_SEND_TIMEOUT: 300
-      PROXY_READ_TIMEOUT: 300
-
   api:
     container_name: "api"
     volumes:
-      - ./api:/api
-      - ./models:/models
-    build: .
+      - ./backend/api:/api
+      - ./backend/models:/models
+      - ./backend/abi:/abi
+      - ./backend/prompts:/prompts
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
     ports:
       - 8080:8080
     deploy:
@@ -31,5 +32,3 @@ services:
             - capabilities: [gpu]
     env_file:
       - .env
-
-  

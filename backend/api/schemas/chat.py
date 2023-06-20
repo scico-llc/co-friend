@@ -1,4 +1,3 @@
-from typing import Optional, List
 from pydantic import BaseModel, Field
 
 class ChatSetting(BaseModel):
@@ -9,6 +8,9 @@ class ChatSetting(BaseModel):
 class ChatRequest(BaseModel):
     animal_id: str = Field(None, example="xxxxxxxxxxxx123")
     message: str = Field(None, example="サンプルメッセージ")
+
+class TopicRequest(BaseModel):
+    animal_id: str = Field(None, example="xxxxxxxxxxxx123")
 
 class ChatResponse(BaseModel):
     animal_id: str = Field(None, example="xxxxxxxxxxxx123")

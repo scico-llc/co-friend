@@ -4,7 +4,7 @@ transformers
 xformers
 accelerate
 safetensors
-rembg
+rembg[gpu]
 torchvision
 pydantic
 typing
@@ -13,3 +13,4 @@ base58
 diffusers
 firebase-admin
 google-cloud-firestore
+web3

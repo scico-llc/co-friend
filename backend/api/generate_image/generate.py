@@ -1,24 +1,22 @@
 from typing import List
-from diffusers import UniPCMultistepScheduler
-from diffusers import StableDiffusionPipeline
+from diffusers import UniPCMultistepScheduler, StableDiffusionPipeline
 from rembg import remove
-from PIL.Image import Image as PILImage
 
 import os
 import torch
+from torch import autocast
 import requests
 from safetensors.torch import load_file
-
 from . import model_util
 
-def generate_image(animal_name: str, seed: int) -> List[PILImage]:
-    # Modelの確認・変換と取得
-    safetensors_path = "../../models/anything-v5.safetensors"
+def initialize_diffusers() -> StableDiffusionPipeline:
+    device = 'cuda'
+    safetensors_path = "../models/anything-v5.safetensors"
+    model_path = "../models/anything-v5"
+
     safetensors_url = "https://huggingface.co/ckpt/anything-v5.0/resolve/main/AnythingV5V3_v5PrtRE.safetensors"
-    model_path = "../../models/anything-v5"
     ref_name = "stablediffusionapi/anything-v5"
     if not os.path.isfile(safetensors_path):
-        print("download Model")
         urlData = requests.get(safetensors_url).content
         with open(safetensors_path, mode="wb") as f:
             f.write(urlData)
@@ -27,10 +25,9 @@ def generate_image(animal_name: str, seed: int) -> List[PILImage]:
         convert(safetensors_path, model_path, ref_name)
 
     # Loraの確認と取得
-    lora_path = "../../models/CuteCreatures.safetensors"
+    lora_path = "../models/CuteCreatures.safetensors"
     lora_url = "https://civitai.com/api/download/models/64757"
     if not os.path.isfile(lora_path):
-        print("download Lora")
         urlData = requests.get(lora_url).content
         with open(lora_path, mode="wb") as f:
             f.write(urlData)
@@ -39,24 +36,37 @@ def generate_image(animal_name: str, seed: int) -> List[PILImage]:
     pipe = StableDiffusionPipeline.from_pretrained(model_path)
     pipe = load_safetensors_lora(pipe, lora_path, alpha=0.9)
     pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config)
+    pipe.to(device)
 
+    return pipe
+
+
+def generate_image(pipe: StableDiffusionPipeline, animal_name: str, seed: int) -> List[str]:
     # Generativeの生成
+    device = 'cuda'
     generator = torch.manual_seed(seed)
     negative_prompt = "glass, pedestal, socle, basement, camera, subsurface, underwater, hypermaximalist, diamond, (flowers), water, (leaves) (worst quality:2), (low quality:2), (normal quality:2), border, frame, poorly drawn, childish, hands, hand, hair, ((dof)), bad fingers, bad anatomy, missing fingersmissing_limb, liquid fingers, cropped, many legs, text, sign"
     prompt = f"<lora:CuteCreatures:0.95> Cu73Cre4ture {animal_name}"
 
-    images = pipe(
-        prompt=prompt,
-        generator=generator,
-        negative_prompt=negative_prompt,
-        num_inference_steps=50,
-        guidance_scale=7,
-        width=512,
-        height=512,
-        num_images_per_prompt=3,
-    ).images
+    with autocast(device):
+        images = pipe(
+            prompt=prompt,
+            generator=generator,
+            negative_prompt=negative_prompt,
+            num_inference_steps=50,
+            guidance_scale=7,
+            width=512,
+            height=512,
+            num_images_per_prompt=3,
+        ).images
 
-    return [remove(img) for img in images]
+    outputs = []
+    # 一時保存
+    for i, img in enumerate(images):
+        file_name = f'./.generated/{i}.png'
+        remove(img).save(file_name)
+        outputs.append(file_name)
+    return outputs
 
 
 def convert(model_to_load: str, model_to_save: str, ref: str):

@@ -7,18 +7,22 @@
 
 import Foundation
 
-enum UserDefaultsClient {
+struct UserDefaultsClient {
+    private static let userDefaults = UserDefaults(suiteName: "group.group.co-friend.Cofriend.WidgetExtension")
+    
     enum StringItem: String {
         case animalId
         case animalImageUrl
     }
     
     private static func set(value: String, forKey item: StringItem) {
-        UserDefaults.standard.set(value, forKey: item.rawValue)
+        userDefaults?.set(value, forKey: item.rawValue)
+        //UserDefaults.standard.set(value, forKey: item.rawValue)
     }
     
     private static func string(forKey item: StringItem) -> String? {
-        UserDefaults.standard.string(forKey: item.rawValue)
+        userDefaults?.string(forKey: item.rawValue)
+        // UserDefaults.standard.string(forKey: item.rawValue)
     }
 }
 

@@ -7,48 +7,87 @@
 
 import WidgetKit
 import SwiftUI
+import Alamofire
+
+struct CofriendWigetEntry: TimelineEntry {
+    let date: Date
+    let imageUrl: String?
+    let message: String
+}
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), text: "", imageName: "leaf")
+    func placeholder(in context: Context) -> CofriendWigetEntry {
+        CofriendWigetEntry(date: Date(), imageUrl: nil, message: "Placeholder")
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), text: "", imageName: "leaf")
-        completion(entry)
+    // プレビュー/ギャラリーに表示されるビュー、ユーザーがウィジェットを追加した際に最初に表示されるビュー
+    func getSnapshot(in context: Context, completion: @escaping (CofriendWigetEntry) -> ()) {
+        Task {
+            let entry = try await fetchEntry(date: Date())
+            completion(entry)
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, text: "hourOffset: \(hourOffset)", imageName: "leaf")
-            entries.append(entry)
+        Task {
+            let currentDate = Date()
+            let entryDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
+            let entry = try await fetchEntry(date: entryDate)
+            let timeline = Timeline(entries: [entry], policy: .atEnd)
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+    }
+    
+    private func fetchEntry(date: Date) async throws -> CofriendWigetEntry {
+        let animalId = UserDefaultsClient.animalId ?? "xxxxxxxxxxxx123"
+        let imageUrl = UserDefaultsClient.animalImageUrl ?? "https://storage.googleapis.com/co-friend-dev.appspot.com/1234/0.png"
+       
+        let parameters = PostChatTopicParameters(animalId: animalId)
+        let request = RequestPostChatTopic(parameters: parameters)
+        print("request.path: ", request.path)
+        let response = try await APIClient.request(request)
+        print("response: ", response.message)
+        // Mock:
+//        let response = PostChatTopicResponse(animalId: animalId, message: "こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは")
+        
+        return CofriendWigetEntry(date: date, imageUrl: imageUrl, message: response.message)
     }
 }
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let text: String
-    let imageName: String
-}
-
 struct CofriendWidgetEntryView : View {
+    @Environment(\.widgetFamily) var family: WidgetFamily
     var entry: Provider.Entry
 
+    @ViewBuilder
     var body: some View {
-        HStack {
-            Image(entry.imageName)
-                .frame(maxWidth: 100, maxHeight: 100)
-            Text(entry.date, style: .time)
-            Text("text: \(entry.text)")
+        switch family {
+        case .systemMedium: WidgetMediumView(imageUrl: entry.imageUrl, message: entry.message)
+        default: Text("medium のみ対応しています")
+        }
+    }
+}
+
+struct WidgetMediumView: View {
+    let imageUrl: String?
+    let message: String
+    
+    var body: some View {
+        HStack (spacing: 12) {
+            if let url = URL(string: imageUrl ?? ""),
+               let imageData = try? Data(contentsOf: url),
+               let uiImage = UIImage(data: imageData) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .frame(width: 120, height: 120)
+            } else {
+                ProgressView()
+                    .frame(width: 120, height: 120)
+            }
+            
+            Text(message)
+                .frame(maxWidth: .infinity)
+                .multilineTextAlignment(.leading)
+                .padding(.trailing, 16)
         }
     }
 }
@@ -67,7 +106,9 @@ struct CofriendWidget: Widget {
 
 struct CofriendWidget_Previews: PreviewProvider {
     static var previews: some View {
-        CofriendWidgetEntryView(entry: SimpleEntry(date: Date(), text: "test", imageName: "leaf"))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        let entry = Provider.Entry(date: Date(), imageUrl: "https://storage.googleapis.com/co-friend-dev.appspot.com/1234/2.png",
+                                   message: "こんにちはこんにちはこんにちはこんにちはこんにちは")
+        CofriendWidgetEntryView(entry: entry)
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

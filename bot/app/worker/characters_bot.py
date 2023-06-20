@@ -1,6 +1,7 @@
 import os
 import openai
 import uuid
+import time
 import datetime
 from firebase_admin import firestore
 
@@ -62,7 +63,7 @@ def get_character_setting(animal_id: str) -> tuple:
 
 
 def save_conversation(my_id: str, your_id: str, timestamp: datetime) -> tuple:
-    conv_id = uuid.uuid4()
+    conv_id = str(uuid.uuid4())
     db = firestore.client()
     doc_ref = db.collection("conversations").document(conv_id)
     
@@ -75,7 +76,7 @@ def save_conversation(my_id: str, your_id: str, timestamp: datetime) -> tuple:
         }
     )
 
-    return conv_id, conv_id
+    return conv_id
 
 
 def save_history(history: list, conv_id: str):
@@ -113,10 +114,10 @@ def start_bot(animal_ids: list[str]):
     )
 
     history1 = [prompt1]
-    conv1, now = save_conversation(id1, id2, dt_now)
+    conv1 = save_conversation(id1, id2, dt_now)
 
     history2 = [prompt2]
-    conv2, now = save_conversation(id2, id1, dt_now)
+    conv2 = save_conversation(id2, id1, dt_now)
 
     topic_prompt = [{"role": "system", "content": topic}]
     next_topic = {
@@ -130,15 +131,15 @@ def start_bot(animal_ids: list[str]):
                 history1.append(situation_prompt)
             res = chat(history1)
             history1.append(save_message(res))
-            save_history(history1, conv1, now)
+            save_history(history1, conv1)
             history2.append(set_message(res))
-            save_history(history2, conv2, now)
+            save_history(history2, conv2)
         else:
             res = chat(history2)
             history1.append(set_message(res))
-            save_history(history1, conv1, now)
+            save_history(history1, conv1)
             history2.append(save_message(res))
-            save_history(history2, conv2, now)
+            save_history(history2, conv2)
 
         topic_prompt.append(next_topic)
         res = chat(topic_prompt)
@@ -172,7 +173,7 @@ def save_dialy(animal_id: str, speaker_id: str, history: list):
     )
 
     db = firestore.client()
-    doc_ref = db.collection("memories").document(f"{now.microsecond}")
+    doc_ref = db.collection("memories").document(f"{int(time.mktime(now.timetuple()))}")
     doc_ref.set(
         {
             "memory": memory,

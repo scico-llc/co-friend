@@ -2,6 +2,7 @@
 pragma solidity ^0.8.18;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "../node_modules/@openzeppelin/contracts/security/Pausable.sol";
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 import "../node_modules/@openzeppelin/contracts/utils/Strings.sol";
@@ -40,5 +41,9 @@ contract MemorySBT is ERC721, Pausable, Ownable {
         Address.sendValue(payable(owner()), address(this).balance);
     }
 
-    function renounceOwnership() public override onlyOwner {}   
+    function renounceOwnership() public override onlyOwner {}
+
+    function burn(uint256 _tokenId) external onlyOwner{
+        super._burn(_tokenId);
+    }
 }

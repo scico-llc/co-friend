@@ -1,11 +1,6 @@
 const hre = require("hardhat");
 
 async function main() {
-  const FriendNFT = await hre.ethers.getContractFactory("FriendNFT")
-  const nft = await FriendNFT.deploy();
-  await nft.deployed();
-  console.log("FriendNFT Deployed at: ", nft.address);
-
   const CCExecutorList = await hre.ethers.getContractFactory("CrossChainExecutorList");
   const ccExecutorList = await CCExecutorList.deploy();
   await ccExecutorList.deployed();

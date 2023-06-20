@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ChatView: View {
     @ObservedObject private(set) var presenter = Presenter()
@@ -63,21 +64,18 @@ struct ChatContetView: View {
 struct ChatMessageView: View {
     let chatMessage: ChatMessage
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .top) {
             if (chatMessage.imageUrl == nil) {
                 Image(systemName: "person")
                     .resizable()
-                    .frame(width: 32, height: 32)
+                    .frame(width: 28, height: 28)
                     .cornerRadius(10)
             } else {
-                AsyncImage(url: URL(string: chatMessage.imageUrl!)!) { image in
-                    image
-                        .resizable()
-                        .frame(width: 32, height: 32)
-                        .cornerRadius(10)
-                } placeholder: {
-                    EmptyView()
-                }
+                KFImage.url(URL(string: chatMessage.imageUrl!)!)
+                    .cacheMemoryOnly()
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                    .cornerRadius(10)
             }
             VStack(alignment: .leading) {
                 Text(chatMessage.role)

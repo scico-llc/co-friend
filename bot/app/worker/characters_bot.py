@@ -1,6 +1,5 @@
 import os
 import openai
-import copy
 import datetime
 from firebase_admin import firestore
 
@@ -53,15 +52,12 @@ def get_character_setting(animal_id: str) -> tuple:
     # firestoreから履歴を読み込む
     doc_ref = db.collection("characters").document(animal_id)
     character_data = doc_ref.get().to_dict()
-    animal_type = character_data.animal_type
-    animal_name = character_data.animal_name
-    profile = character_data.profile.replace("\\n", "\n")
+    animal_name = character_data["name"]
+    profile = character_data["profile"].replace("\\n", "\n")
+    setting_text = character_data["history"][0]["content"].replace("\\n", "\n")
+    setting_prompt = {"role": "system", "content": setting_text}
 
-    with open("../prompts/setting_prompt.txt") as f:
-        setting_text = f.read().format(animal_type, animal_name, profile)
-        setting_prompt = {"role": "system", "content": setting_text}
-
-    return profile, character_data.name, character_data.name, setting_prompt
+    return profile, animal_name, setting_prompt
 
 
 def save_conversation(my_id: str, your_id: str, timestamp: datetime) -> tuple:

@@ -98,15 +98,6 @@ def fetch_memory_metadata(
     return metadata_ref.get().to_dict()
 
 
-def fetch_dialy_metadata(
-    token_id: int,
-) -> dict:
-    db = firestore.client()
-    dialy_id = f"{token_id}".zfill(8)
-
-    metadata_ref = db.collection("dialy_metadata").document(dialy_id)
-    return metadata_ref.get().to_dict()
-
 def fetch_random_two_animals() -> list[str]:
     db = firestore.client()
     docs = db.collection("characters").stream()

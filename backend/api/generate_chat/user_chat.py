@@ -7,7 +7,6 @@ from firebase_admin import firestore
 model_name = "gpt-3.5-turbo-16k-0613"
 openai.api_key = os.getenv("OPENAI_KEY")
 
-
 def get_character_setting(
     animal_id: str,
     animal_type: str,
@@ -41,7 +40,7 @@ def get_character_setting(
 
     # firestoreにhistoryを追加
     db = firestore.client()
-    doc_ref = db.collection("caharacters").document(animal_id)
+    doc_ref = db.collection("characters").document(animal_id)
     doc_ref.set(
         {
             "id": animal_id,
@@ -61,6 +60,7 @@ def character_chat(
     speaker: str = "user",
 ) -> str:
     db = firestore.client()
+    print(animal_id)
     # firestoreから履歴を読み込む
     doc_ref = db.collection("characters").document(animal_id)
     character_data = doc_ref.get().to_dict()

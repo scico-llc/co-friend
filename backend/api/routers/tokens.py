@@ -8,9 +8,11 @@ import firebase.firebase as fb
 router = APIRouter()
 
 
-@router.get("/nft/metadata/{id}")
-async def get_nft_metadata(id: str) -> sch.NFTMetaData:
+@router.get("/cofrd/metadata/{id}")
+async def get_friend_nft_metadata(id: str) -> sch.NFTMetaData:
     metadata = fb.fetch_character_metadata(id)
+    if metadata == None:
+        return
     return sch.NFTMetaData(
         description=metadata["description"].replace("\\n", "\n"),
         external_url="",
@@ -20,9 +22,11 @@ async def get_nft_metadata(id: str) -> sch.NFTMetaData:
     )
 
 
-@router.get("/sbt/metadata/{id}")
-async def get_sbt_metadata(id: str) -> sch.NFTMetaData:
+@router.get("/comem/metadata/{id}")
+async def get_memory_sbt_metadata(id: str) -> sch.NFTMetaData:
     metadata = fb.fetch_memory_metadata(id)
+    if metadata == None:
+        return
     return sch.NFTMetaData(
         description=metadata["description"].replace("\\n", "\n"),
         external_url="",
@@ -31,3 +35,16 @@ async def get_sbt_metadata(id: str) -> sch.NFTMetaData:
         attributes=[],
     )
 
+
+@router.get("/codal/metadata/{id}")
+async def get_dialy_nft_metadata(id: str) -> sch.NFTMetaData:
+    metadata = fb.fetch_dialy_metadata(id)
+    if metadata == None:
+        return
+    return sch.NFTMetaData(
+        description=metadata["description"].replace("\\n", "\n"),
+        external_url="",
+        image="",
+        name=metadata["name"],
+        attributes=[],
+    )

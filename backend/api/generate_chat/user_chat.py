@@ -40,7 +40,7 @@ def get_character_setting(
 
     # firestoreにhistoryを追加
     db = firestore.client()
-    doc_ref = db.collection("caharacters").document(animal_id)
+    doc_ref = db.collection("characters").document(animal_id)
     doc_ref.set(
         {
             "id": animal_id,

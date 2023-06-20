@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1CA1998B2A413ECD0028D8ED /* ProcessingCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA1998A2A413ECD0028D8ED /* ProcessingCharacterView.swift */; };
+		1CA1998D2A4186540028D8ED /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA1998C2A4186540028D8ED /* ChatMessage.swift */; };
 		1CD4CCC32A35B68100803BA2 /* CofriendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC22A35B68100803BA2 /* CofriendApp.swift */; };
 		1CD4CCC72A35B68200803BA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC62A35B68200803BA2 /* Assets.xcassets */; };
 		1CD4CCCA2A35B68200803BA2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD4CCC92A35B68200803BA2 /* Preview Assets.xcassets */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		1CA1998A2A413ECD0028D8ED /* ProcessingCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingCharacterView.swift; sourceTree = "<group>"; };
+		1CA1998C2A4186540028D8ED /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		1CD4CCBF2A35B68100803BA2 /* Cofriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cofriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD4CCC22A35B68100803BA2 /* CofriendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CofriendApp.swift; sourceTree = "<group>"; };
 		1CD4CCC62A35B68200803BA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 		D75275C82A388D0900D0FDCF /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				1CA1998C2A4186540028D8ED /* ChatMessage.swift */,
 				1CD6A0E82A3A069200EB0095 /* ChatView.swift */,
 				1CD6A11C2A40B67400EB0095 /* ChatViewPresenter.swift */,
 			);
@@ -429,6 +432,7 @@
 				1CD6A0E92A3A069200EB0095 /* ChatView.swift in Sources */,
 				1CD6A1142A40A41C00EB0095 /* CharacterViewPresenter.swift in Sources */,
 				1CD6A14B2A411E9B00EB0095 /* RequestPostChatTopic.swift in Sources */,
+				1CA1998D2A4186540028D8ED /* ChatMessage.swift in Sources */,
 				1CD6A1542A41385900EB0095 /* FilledButton.swift in Sources */,
 				1CD6A1242A40C03A00EB0095 /* RequestPostChat.swift in Sources */,
 				1CD6A12A2A40C50B00EB0095 /* RegisterComplete.swift in Sources */,

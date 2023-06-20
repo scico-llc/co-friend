@@ -25,7 +25,7 @@ struct GenerateCharacterViewContent: View {
             VStack(alignment: .leading) {
                 Text("キャラクターの種類")
                     .font(.subheadline)
-                TextField("Example: Cat", text: .init(get: {
+                TextField("ネコ", text: .init(get: {
                     presenter.viewState.animalTypeText
                 }, set: { text in
                     presenter.onAnimalTypeTextChange(text)

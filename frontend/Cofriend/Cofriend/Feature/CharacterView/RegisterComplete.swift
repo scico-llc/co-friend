@@ -12,10 +12,8 @@ struct RegisterCompleteView: View {
     
     var body: some View {
         Text("キャラクターの登録が完了しました")
-        Button(action: {
+        FilledButton(text: "閉じる", action: {
             dismiss()
-        }, label: {
-            Text("閉じる")
         })
     }
 }

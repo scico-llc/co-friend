@@ -95,7 +95,7 @@ extension CharacterView.Presenter {
                 
                 UserDefaultsClient.animalId = viewState.animalId
                 UserDefaultsClient.animalImageUrl = viewState.selectedAnimalImageUrl
-                viewState.viewKind = .register
+                viewState.viewKind = .complete
             } catch let error {
                 print("error occurred:", error)
                 viewState.viewKind = .register

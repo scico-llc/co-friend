@@ -23,11 +23,11 @@ struct CharacterView: View {
         case .generate:
             GenerateCharacterView(presenter: presenter)
         case .generating:
-            ProcessingCharacterView("キャラクターを生み出しています...")
+            ProcessingCharacterView("\(presenter.viewState.animalTypeText) を生み出しています...")
         case .register:
             RegisterCharacterView(presenter: presenter)
         case .registering:
-            ProcessingCharacterView("キャラクターを登録しています...")
+            ProcessingCharacterView("\(presenter.viewState.animalName) を登録しています...")
         case .complete:
             RegisterCompleteView()
         }

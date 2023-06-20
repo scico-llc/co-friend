@@ -11,7 +11,10 @@ struct RegisterCharacterView: View {
     @ObservedObject private(set) var presenter: CharacterView.Presenter
     
     var body: some View {
-        RegisterCharacterViewContent(presenter: presenter)
+        ScrollView {
+            RegisterCharacterViewContent(presenter: presenter)
+        }
+        
     }
 }
 
@@ -23,32 +26,36 @@ struct RegisterCharacterViewContent: View {
         VStack(alignment: .center, spacing: 0) {
             Spacer().frame(height: 32)
             VStack(alignment: .leading, spacing: 32) {
-                Text("Step1 友達にしたいキャラクターを選ぼう！")
+                Text("オリジナルのキャラクターを3体生み出しました！")
+                    .font(.subheadline)
+                Text("Step1 友達にしたいキャラクターを選びましょう！")
                     .font(.subheadline)
                 
-                HStack {
-                                    
-                    ForEach(0 ..< presenter.viewState.animalImageUrls.count, id: \.self) { index in
-                        let imageUrl = presenter.viewState.animalImageUrls[index]
-                        Button(action: {
-                            presenter.onTapAnimalImage(imageUrl)
-                            selectedImageIndex = index
-                        }, label: {
-                            AsyncImage(url: URL(string: imageUrl)) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .opacity(selectedImageIndex == index || selectedImageIndex == -1 ? 1.0 : 0.6)
-                            } placeholder: {
-                                ProgressView()
-                            }
-                        })
-                    }
+                VStack(alignment: .center) {
+                    HStack {
+                        
+                        ForEach(0 ..< presenter.viewState.animalImageUrls.count, id: \.self) { index in
+                            let imageUrl = presenter.viewState.animalImageUrls[index]
+                            Button(action: {
+                                presenter.onTapAnimalImage(imageUrl)
+                                selectedImageIndex = index
+                            }, label: {
+                                AsyncImage(url: URL(string: imageUrl)) { image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .opacity(selectedImageIndex == index || selectedImageIndex == -1 ? 1.0 : 0.4)
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                            })
+                        }
+                    }.frame(minHeight: 100)
                 }
                                     
                 Text("Step2 名前を付けよう！")
                     .font(.subheadline)
-                TextField("名前", text: .init(get: {
+                TextField("たろう", text: .init(get: {
                     presenter.viewState.animalName
                 }, set: { text in
                     presenter.onAnimalNameTextChange(text)

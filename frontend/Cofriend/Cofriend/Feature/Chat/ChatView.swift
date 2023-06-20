@@ -35,12 +35,12 @@ struct ChatContetView: View {
     var body: some View {
         VStack(spacing: 0) {
             List {
-                ForEach(0 ..< presenter.viewState.chat.history.count, id: \.self) { index in
-                    let message = presenter.viewState.chat.history[index]
-                    MessageView(message: message)
+                ForEach(0 ..< presenter.viewState.chatMessages.count, id: \.self) { index in
+                    let chatMessage = presenter.viewState.chatMessages[index]
+                    ChatMessageView(chatMessage: chatMessage)
                 }.listRowSeparator(.hidden)
             }.listStyle(.plain)
-                .padding(.horizontal, 12)
+                .padding(.horizontal, 8)
             HStack(spacing: 8) {
                 TextField("Message", text: .init(get: {
                     presenter.viewState.messageInputText
@@ -60,19 +60,30 @@ struct ChatContetView: View {
     }
 }
 
-struct MessageView: View {
-    let message: Message
+struct ChatMessageView: View {
+    let chatMessage: ChatMessage
     var body: some View {
         HStack(alignment: .center) {
-            Image(systemName: "person")
-                .resizable()
-                .frame(width: 24, height: 24)
-                .cornerRadius(10)
+            if (chatMessage.imageUrl == nil) {
+                Image(systemName: "person")
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                    .cornerRadius(10)
+            } else {
+                AsyncImage(url: URL(string: chatMessage.imageUrl!)!) { image in
+                    image
+                        .resizable()
+                        .frame(width: 32, height: 32)
+                        .cornerRadius(10)
+                } placeholder: {
+                    EmptyView()
+                }
+            }
             VStack(alignment: .leading) {
-                Text(message.role)
+                Text(chatMessage.role)
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                Text(message.content)
+                Text(chatMessage.content)
                     .font(.body)
             }
             Spacer()

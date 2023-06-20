@@ -11,18 +11,36 @@ import FirebaseFirestoreSwift
 extension ChatView {
     @MainActor struct ViewState {
         fileprivate(set) var messageInputText: String = ""
-        fileprivate(set) var chat: Chat = .init(id: "0", history: [], name: "", type: "")
+        fileprivate var chat: Chat = .init(id: "0", history: [], name: "", type: "")
+        
+        var chatMessages: [ChatMessage] {
+            // role が system のメッセージは取り除く
+            let history = chat.history.filter { $0.role != "system" }
+            // role が assistant のメッセージにはURLを付与する
+            let messages: [ChatMessage] = history.map { message in
+                let chatMessage: ChatMessage
+                if message.role == "assistant" {
+                    chatMessage = ChatMessage(imageUrl: animalImageUrl, role: chat.name, content: message.content)
+                } else {
+                    chatMessage = ChatMessage(imageUrl: nil, role: message.role, content: message.content)
+                }
+                return chatMessage
+            }
+            return messages
+        }
+        
+        // 内部状態
+        fileprivate var animalId: String?
+        fileprivate var animalImageUrl: String?
     }
     
     @MainActor final class Presenter: ObservableObject {
         @Published private(set) var viewState = ViewState()
-        // 内部状態
-        private var animalId: String?
-        private var animalImageUrl: String?
+        
         
         func onAppeare() {
-            animalId = UserDefaultsClient.animalId
-            animalImageUrl = UserDefaultsClient.animalImageUrl
+            viewState.animalId = UserDefaultsClient.animalId
+            viewState.animalImageUrl = UserDefaultsClient.animalImageUrl
             fetchChat()
         }
         
@@ -31,7 +49,7 @@ extension ChatView {
         }
         
         func onTapSendMessageButton() {
-            guard let animalId = animalId else { return }
+            guard let animalId = viewState.animalId else { return }
 //            let animalId = "xxxxxxxxxxxx123"
             
             Task {
@@ -49,7 +67,7 @@ extension ChatView {
         }
         
         private func fetchChat() {
-             guard let animalId = animalId else {
+            guard let animalId = viewState.animalId else {
                  viewState.chat = Chat(id: "", history: [Message(role: "System", content: "右上の ＋ マークから友達キャラクターを登録しましょう！")], name: "", type: "")
                  return }
 //            let animalId = "xxxxxxxxxxxx123"

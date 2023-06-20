@@ -7,3 +7,6 @@ middleware/default_server
 *.crt
 *.csr
 *.stamp
+bot/__pycache__/characters_bot.cpython-310.pyc
+.gitignore
+backend/api/core

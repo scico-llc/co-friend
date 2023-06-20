@@ -1,0 +1,6 @@
+pydantic
+typing
+openai
+firebase-admin
+google-cloud-firestore
+rocketry

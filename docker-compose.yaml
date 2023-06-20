@@ -13,6 +13,10 @@ services:
     environment:
       DOMAINS: 'co-friend-dev.sci-co.co.jp -> http://api:8080'
       STAGE: 'production'
+      PROXY_CONNECT_TIMEOUT: 300
+      PROXY_SEND_TIMEOUT: 300
+      PROXY_READ_TIMEOUT: 300
+  
   api:
     container_name: "api"
     volumes:
@@ -30,5 +34,16 @@ services:
         reservations:
           devices:
             - capabilities: [gpu]
+    env_file:
+      - .env
+
+  bot:
+    container_name: "bot"
+    volumes:
+      - ./bot/api:/api
+      - ./bot/prompts:/prompts
+    build:
+      context: ./bot
+      dockerfile: ./Dockerfile
     env_file:
       - .env

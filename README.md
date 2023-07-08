@@ -1,3 +1,5 @@
+![](/assets/icon.png)
+
 # CO-friend
 [![](/assets/image0.png)](https://www.youtube.com/watch?v=KakcQZDJGfM)
 CO-create, COntribute, COexistな友達。

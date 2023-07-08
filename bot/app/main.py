@@ -1,6 +1,3 @@
-# from dotenv import load_dotenv
-# load_dotenv('../../.env')
-
 from rocketry import Rocketry
 from rocketry.args import TaskLogger
 from rocketry.log import MinimalRecord
@@ -21,11 +18,6 @@ def start_chat():
     animals = fetch_random_two_animals()
     start_bot(animals)
 
-@app.task(cron(minute="*/1"))
-def check_cron():
-    print('1min task')
-
 if __name__ == "__main__":
     initialize()
-    print('start bot') 
     app.run()

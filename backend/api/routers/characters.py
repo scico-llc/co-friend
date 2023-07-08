@@ -37,14 +37,14 @@ async def mint_character(
     published = spl.get_friend_total_supply()
     token_id = published + 1
     # NFTをMint
-    mint.mint_nft(reqBody.wallet_address, published + 1)
+    mint.mint_cofriend_nft(reqBody.wallet_address, published + 1)
     # Token bound Accountを作成
     address = acc.create_account_from_token_id(token_id)
-    attr = {
-        "id": reqBody.animal_id,
-        "type": reqBody.animal_type,
-        "account": address,
-    }
+    attr = [
+        {"trait_type": "Account", "value": address},
+        {"trait_type": "Id", "value": reqBody.animal_id},
+        {"trait_type": "Type", "value": reqBody.animal_type},
+    ]
     fb.save_character_metadata(
         token_id,
         reqBody.animal_id,

@@ -2,6 +2,7 @@ import os
 import json
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
+from firebase_admin import firestore
 
 
 def create_account_from_token_id(token_id: int) -> str:
@@ -28,20 +29,6 @@ def create_account_from_token_id(token_id: int) -> str:
 
     create_address = contract.functions.createAccount(FRIEND_NFT_ADDRESS, token_id).call()
     return create_address
-    # buildTransaction(
-    #     {
-    #         "nonce": w3.eth.get_transaction_count(ADMIN_WALLET_ADDRESS),
-    #         "gas": 10000000,
-    #         "gasPrice": w3.toWei("2", "gwei"),
-    #     }
-    # )
-    # sign_create_tx = w3.eth.account.sign_transaction(
-    #     create_tx, private_key=ADMIN_SECRET_KEY
-    # )
-
-    # w3.eth.send_raw_transaction(sign_create_tx.rawTransaction)
-    # tx_hash = w3.toHex(w3.keccak(sign_create_tx.rawTransaction))
-    # w3.eth.wait_for_transaction_receipt(tx_hash)
 
 
 def get_account_from_token_id(token_id: int) -> str:
@@ -65,3 +52,14 @@ def get_account_from_token_id(token_id: int) -> str:
 
     account_address = contract.functions.account(FRIEND_NFT_ADDRESS, token_id).call()
     return account_address
+
+
+def get_account_from_nft_id(nft_id: str) -> tuple:
+    db = firestore.client()
+    character_ref = db.collection("character_metadata").document(nft_id)
+    character_data = character_ref.get().to_dict()
+
+    account = character_data["attributes"]["account"]
+    animal_id = character_data["attributes"]["id"]
+
+    return account, animal_id

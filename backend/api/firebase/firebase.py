@@ -31,11 +31,7 @@ def updaload_image(files: list[str], animal_id: str) -> list[str]:
 
 
 def save_character_metadata(
-    token_id: int,
-    animal_id: str,
-    animal_name: str,
-    image_url: str,
-    attr: dict = {}
+    token_id: int, animal_id: str, animal_name: str, image_url: str, attr: list = []
 ) -> None:
     db = firestore.client()
     character_ref = db.collection("characters").document(animal_id)
@@ -77,6 +73,28 @@ def save_memory_metadata(
     )
 
 
+def save_dialy_metadata(
+    token_id: int,
+    title: str,
+    memory: str,
+    image_url: str,
+    author: str,
+) -> None:
+    dialy_id = f"{token_id}".zfill(8)
+
+    db = firestore.client()
+    metadata_ref = db.collection("dialy_metadata").document(dialy_id)
+    metadata_ref.set(
+        {
+            "description": memory,
+            "external_url": "",
+            "image": image_url,
+            "name": title,
+            "attributes": [{"trait_type": "Author", "value": author}],
+        }
+    )
+
+
 def fetch_character_metadata(
     token_id: int,
 ) -> dict:
@@ -107,6 +125,7 @@ def fetch_dialy_metadata(
     metadata_ref = db.collection("dialy_metadata").document(dialy_id)
     return metadata_ref.get().to_dict()
 
+
 def fetch_random_two_animals() -> list[str]:
     db = firestore.client()
     docs = db.collection("characters").stream()
@@ -117,5 +136,16 @@ def fetch_random_two_animals() -> list[str]:
 
     if len(characters) < 2:
         return []
-    
+
     return random.sample(characters, 2)
+
+
+def fetch_memory_raw_data(
+    memory_id: str,
+) -> str:
+    db = firestore.client()
+
+    doc_ref = db.collection("memories").document(memory_id)
+    memory = doc_ref.get().to_dict()
+
+    return memory["memory"]

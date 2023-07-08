@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from routers import characters, chats, tokens
+from routers import characters, chats, tokens, memories
 from firebase.firebase import initialize
 
 initialize()
@@ -22,3 +22,4 @@ async def handler(request: Request, exc: RequestValidationError):
 app.include_router(characters.router, tags=["characters"])
 app.include_router(chats.router, tags=["chats"])
 app.include_router(tokens.router, tags=["token"])
+app.include_router(memories.router, tags=["memory"])

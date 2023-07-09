@@ -4,6 +4,7 @@ sys.path.append("../")
 from generate_image.generate import initialize_diffusers, generate_image
 from fastapi import APIRouter, Depends
 import schemas.character as sch
+import generate_chat.user_chat as chat
 import firebase.firebase as fb
 import crypto.mint as mint
 import crypto.account as acc
@@ -25,7 +26,7 @@ async def generate_character_image(
         base64.b64decode(seed_byte + "=" * (-len(seed_byte) % 4)), "big"
     )
     images = generate_image(pipe, reqBody.animal_type, seed)
-    urls = fb.updaload_image(images, reqBody.animal_id)
+    urls = fb.updaloadImage(images, reqBody.animal_id)
 
     return sch.CharacterImagesResponse(image_urls=urls)
 
@@ -45,10 +46,19 @@ async def mint_character(
         {"trait_type": "Id", "value": reqBody.animal_id},
         {"trait_type": "Type", "value": reqBody.animal_type},
     ]
-    fb.save_character_metadata(
+    fb.saveCharacterMetadata(
         token_id,
         reqBody.animal_id,
         reqBody.animal_name,
         reqBody.image_url,
         attr,
     )
+
+
+@router.post(
+    "/characters/{animal_id}/keywords",
+    dependencies=[Depends(auth.api_key_auth)],
+)
+async def generate_keywords(animal_id: str):
+    keywords = chat.get_keywords()
+    fb.saveCharacterKeywords(animal_id, keywords)

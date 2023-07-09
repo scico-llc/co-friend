@@ -1,4 +1,5 @@
 import sys
+
 sys.path.append("../")
 from fastapi import APIRouter, Depends
 import schemas.character_memory as sch
@@ -11,6 +12,7 @@ from . import auth
 
 router = APIRouter()
 
+
 @router.post("/memory/mint", dependencies=[Depends(auth.api_key_auth)])
 async def mint_memory(
     reqBody: sch.MemoryMint,
@@ -21,11 +23,9 @@ async def mint_memory(
     wallet_address, _ = acc.get_account_from_nft_id(reqBody.nft_id)
     mint.mint_memory_sbt(wallet_address, published + 1)
 
-    memory = fb.fetch_memory_raw_data(reqBody.memory_id)
-    fb.save_memory_metadata(
-        token_id,
-        memory
-    )
+    memory = fb.fetchMemoryRawData(reqBody.memory_id)
+    fb.saveMemoryMetadata(token_id, memory)
+
 
 @router.post("/dialy/mint", dependencies=[Depends(auth.api_key_auth)])
 async def mint_dialy(
@@ -35,8 +35,5 @@ async def mint_dialy(
     token_id = published + 1
 
     mint.mint_dialy_nft(reqBody.wallet_address, published + 1)
-    memory = fb.fetch_memory_raw_data(reqBody.memory_id)
-    fb.save_memory_metadata(
-        token_id,
-        memory
-    )
+    memory = fb.fetchMemoryRawData(reqBody.memory_id)
+    fb.saveMemoryMetadata(token_id, memory)

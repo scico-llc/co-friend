@@ -5,7 +5,7 @@ import time
 import datetime
 from firebase_admin import firestore
 
-model_name = "gpt-3.5-turbo-16k-0613"
+model_name = "gpt-4-32k"
 openai.api_key = os.getenv("OPENAI_KEY")
 conv_length = 10
 

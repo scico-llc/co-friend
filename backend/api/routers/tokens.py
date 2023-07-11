@@ -10,7 +10,7 @@ router = APIRouter()
 
 @router.get("/cofrd/metadata/{id}")
 async def get_friend_nft_metadata(id: str) -> sch.NFTMetaData:
-    metadata = fb.fetch_character_metadata(id)
+    metadata = fb.fetchCharacterMetadata(id)
     if metadata == None:
         return
     return sch.NFTMetaData(
@@ -24,7 +24,7 @@ async def get_friend_nft_metadata(id: str) -> sch.NFTMetaData:
 
 @router.get("/comem/metadata/{id}")
 async def get_memory_sbt_metadata(id: str) -> sch.NFTMetaData:
-    metadata = fb.fetch_memory_metadata(id)
+    metadata = fb.fetchMemoryMetadata(id)
     if metadata == None:
         return
     return sch.NFTMetaData(
@@ -38,7 +38,7 @@ async def get_memory_sbt_metadata(id: str) -> sch.NFTMetaData:
 
 @router.get("/codal/metadata/{id}")
 async def get_dialy_nft_metadata(id: str) -> sch.NFTMetaData:
-    metadata = fb.fetch_dialy_metadata(id)
+    metadata = fb.fetchDialyMetadata(id)
     if metadata == None:
         return
     return sch.NFTMetaData(

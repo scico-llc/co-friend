@@ -1,10 +1,11 @@
 import os
 import openai
+import json
 import copy
 import datetime
 from firebase_admin import firestore
 
-model_name = "gpt-3.5-turbo-16k-0613"
+model_name = "gpt-4-32k"
 openai.api_key = os.getenv("OPENAI_KEY")
 
 def get_character_setting(
@@ -97,6 +98,19 @@ def get_topic() -> str:
         topic_chat = f.read().format(topic)
 
     return topic_chat
+
+
+def get_keywords() -> list:
+    with open("../prompts/keywords_prompt.txt") as f:
+        keywords_prompt = {"role": "assistant", "content": f.read()}
+    response = openai.ChatCompletion.create(
+        model=model_name,
+        messages=[keywords_prompt],
+        temperature=2,
+    )
+    keywords = json.loads(response.choices[0].message.content)
+
+    return keywords
 
 
 def completion(messages: list = []) -> dict:

@@ -16,7 +16,7 @@ def initialize():
     )
 
 
-def updaload_image(files: list[str], animal_id: str) -> list[str]:
+def updaloadImage(files: list[str], animal_id: str) -> list[str]:
     bucket = storage.bucket()
     content_type = "image/png"
     urls = []
@@ -30,7 +30,7 @@ def updaload_image(files: list[str], animal_id: str) -> list[str]:
     return urls
 
 
-def save_character_metadata(
+def saveCharacterMetadata(
     token_id: int, animal_id: str, animal_name: str, image_url: str, attr: list = []
 ) -> None:
     db = firestore.client()
@@ -52,7 +52,18 @@ def save_character_metadata(
     )
 
 
-def save_memory_metadata(
+def saveCharacterKeywords(animal_id: str, keywords: list[str]) -> None:
+    db = firestore.client()
+    keyword_ref = db.collection("keywords").document(animal_id)
+    keyword_ref.set(
+        [
+            {"id": i, "keyword": word, "is_detected": False}
+            for i, word in enumerate(keywords)
+        ]
+    )
+
+
+def saveMemoryMetadata(
     token_id: int,
     memory: str,
 ) -> None:
@@ -73,7 +84,7 @@ def save_memory_metadata(
     )
 
 
-def save_dialy_metadata(
+def saveDialyMetadata(
     token_id: int,
     title: str,
     memory: str,
@@ -95,7 +106,7 @@ def save_dialy_metadata(
     )
 
 
-def fetch_character_metadata(
+def fetchCharacterMetadata(
     token_id: int,
 ) -> dict:
     db = firestore.client()
@@ -106,7 +117,7 @@ def fetch_character_metadata(
     return metadata
 
 
-def fetch_memory_metadata(
+def fetchMemoryMetadata(
     token_id: int,
 ) -> dict:
     db = firestore.client()
@@ -116,7 +127,7 @@ def fetch_memory_metadata(
     return metadata_ref.get().to_dict()
 
 
-def fetch_dialy_metadata(
+def fetchDialyMetadata(
     token_id: int,
 ) -> dict:
     db = firestore.client()
@@ -126,7 +137,7 @@ def fetch_dialy_metadata(
     return metadata_ref.get().to_dict()
 
 
-def fetch_random_two_animals() -> list[str]:
+def fetchRandomTwoAnimals() -> list[str]:
     db = firestore.client()
     docs = db.collection("characters").stream()
     characters = []
@@ -140,7 +151,7 @@ def fetch_random_two_animals() -> list[str]:
     return random.sample(characters, 2)
 
 
-def fetch_memory_raw_data(
+def fetchMemoryRawData(
     memory_id: str,
 ) -> str:
     db = firestore.client()
@@ -149,3 +160,9 @@ def fetch_memory_raw_data(
     memory = doc_ref.get().to_dict()
 
     return memory["memory"]
+
+
+def fetchCharacterKeywords(animal_id: str) -> list[dict]:
+    db = firestore.client()
+    keyword_ref = db.collection("keywords").document(animal_id)
+    return keyword_ref.get().to_dict()

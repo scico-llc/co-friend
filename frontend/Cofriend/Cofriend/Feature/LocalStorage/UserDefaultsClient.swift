@@ -11,6 +11,7 @@ struct UserDefaultsClient {
     private static let userDefaults = UserDefaults(suiteName: "group.group.co-friend.Cofriend.WidgetExtension")
     
     enum StringItem: String {
+        case walletAddress
         case animalId
         case animalImageUrl
         /// Widgetでのメッセージ取得が失敗した時用に最新のメッセージをキャッシュしておく
@@ -27,6 +28,15 @@ struct UserDefaultsClient {
 }
 
 extension UserDefaultsClient {
+    static var walletAddress: String? {
+        get {
+            return string(forKey: .walletAddress)
+        }
+        set {
+            set(value: newValue!, forKey: .walletAddress)
+        }
+    }
+    
     static var animalId: String? {
         get {
             return string(forKey: .animalId)

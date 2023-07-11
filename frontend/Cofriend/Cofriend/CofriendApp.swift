@@ -24,9 +24,7 @@ struct CofriendApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                ChatView()
-            }
+            LoginView()
         }
     }
 }

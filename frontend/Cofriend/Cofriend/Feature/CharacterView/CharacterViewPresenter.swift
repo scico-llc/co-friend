@@ -38,7 +38,9 @@ extension CharacterView.Presenter {
         Task {
             do {
                 let animalId = UUID().uuidString
-                let parameters = PostCharactersImageParameters(walletAddress: Constants.walletAddress,
+                guard let walletAddress = UserDefaultsClient.walletAddress else { return }
+                
+                let parameters = PostCharactersImageParameters(walletAddress: walletAddress,
                                                                animalId: animalId,
                                                                animalType: viewState.animalTypeText)
                 let request = RequestPostCharactersImage(parameters: parameters)
@@ -77,6 +79,8 @@ extension CharacterView.Presenter {
         viewState.viewKind = .registering
         Task {
             do {
+                guard let walletAddress = UserDefaultsClient.walletAddress else { return }
+                
                 // チャットの設定リクエスト
                 let chatSettingParams = PostChatSettingParameters(animalId: viewState.animalId,
                                                                   animalType: viewState.animalTypeText,
@@ -85,7 +89,7 @@ extension CharacterView.Presenter {
                 _ = try await APIClient.request(chatSettingRequest)
                 
                 // Mintリクエスト
-                let mintParam = PostCharactersMintParameters(walletAddress: Constants.walletAddress,
+                let mintParam = PostCharactersMintParameters(walletAddress: walletAddress,
                                                               imageUrl: viewState.selectedAnimalImageUrl,
                                                              animalId: viewState.animalId,
                                                               animalType: viewState.animalTypeText,

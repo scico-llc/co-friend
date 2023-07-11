@@ -7,6 +7,6 @@
 
 enum Constants {
     static let baseUrl = "https://co-friend-dev.sci-co.co.jp"
-    static let walletAddress = "xxx"
+    static let clientId = "xxx"
     static let token = "xxx"
 }

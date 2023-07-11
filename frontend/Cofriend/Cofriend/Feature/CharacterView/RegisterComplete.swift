@@ -15,5 +15,6 @@ struct RegisterCompleteView: View {
         FilledButton(text: "閉じる", action: {
             dismiss()
         })
+        .padding(.horizontal, 20)
     }
 }

@@ -18,7 +18,7 @@ private struct FilledButtonStyle: ButtonStyle {
     
     private let enabledColor: Color = .white
     private let disabledColor: Color =  .white
-    private let enabledBacgroundColor: Color = .blue
+    private let enabledBacgroundColor: Color = Color("PrimaryColor")
     private let disabledBackgroundColor: Color = .gray
     
     func makeBody(configuration: Configuration) -> some View {
